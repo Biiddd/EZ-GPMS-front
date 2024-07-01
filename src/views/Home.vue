@@ -46,7 +46,10 @@ const openKeys = ref<string[]>(["sub1"]);
                 </span>
               </template>
               <a-menu-item key="9">基本信息</a-menu-item>
-              <a-menu-item key="10">修改信息</a-menu-item>
+              <a-menu-item key="10">
+                <router-link to="/editInfo">
+                  修改信息
+                </router-link></a-menu-item>
             </a-sub-menu>
           </a-menu>
 
