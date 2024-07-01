@@ -1,24 +1,34 @@
 <script lang="ts" setup>
-import { ref, reactive } from "vue";
-import { PlusOutlined } from "@ant-design/icons-vue";
-import type { TreeSelectProps, CascaderProps } from "ant-design-vue";
+import { ref } from "vue";
+import { RegionSelects } from "v-region";
+import axios from "axios";
 
 const labelCol = { style: { width: "150px" } };
 const wrapperCol = { span: 14 };
 
-const options = reactive<CascaderProps["options"]>([
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-      },
-    ],
-  },
-]);
-const checked = ref(false);
+const newPhone = ref<number>();
+const newEmail = ref<string>("");
+
+const region = ref({
+  province: "",
+  city: "",
+  area: "",
+  town: "",
+});
+
+const onSubmitClick = () => {
+  console.log(region.value);
+  console.log(newPhone.value);
+  console.log(newEmail.value);
+  axios.post("/api/editInfo", {
+    newPhone: newPhone.value,
+    newEmail: newEmail.value,
+    province: region.value.province,
+    city: region.value.city,
+    area: region.value.area,
+  });
+
+};
 </script>
 
 <template>
@@ -29,15 +39,23 @@ const checked = ref(false);
     style="max-width: 600px"
   >
     <a-form-item label="联系方式">
-      <a-input />
+      <a-input v-model:value="newPhone" />
     </a-form-item>
 
     <a-form-item label="邮箱">
+      <a-input v-model:value="newEmail" />
+    </a-form-item>
+
+    <a-form-item label="联系地址">
+      <RegionSelects v-model="region" />
+    </a-form-item>
+
+    <a-form-item label="详细地址">
       <a-input />
     </a-form-item>
 
     <a-form-item>
-      <a-button type="primary">确认编辑</a-button>
+      <a-button type="primary" @click="onSubmitClick">确认编辑</a-button>
     </a-form-item>
   </a-form>
 </template>
