@@ -1,88 +1,67 @@
 <template>
   <div>
-    <a-steps v-model:current="current">
-      <a-step
-          v-for="(item, index) in items"
-          :key="index"
-          :title="item.title"
-          :description="current > index ? '已完成' : item.description"
-          :disabled="true"
-      ></a-step>
-    </a-steps>
-      <a-space wrap>
-        <a-button @click="nextStep" :disabled="current>=items.length  " class="prev-button" type="primary">完成该步骤</a-button>
-        <a-button @click="prevStep" :disabled="current <= 0" class="next-button" type="primary">返回上一步</a-button>
-      </a-space>
+    <a-steps :current="current" :items="items"></a-steps>
+    <div class="steps-content">
+      <component :is="steps[current].content" />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import UploadOpening from "./UploadOpening.vue";
 
+// dev阶段手动更改current的值，来查看不同步骤的内容
+// 前后端联调时，current的值由后端返回
 const current = ref<number>(0);
-const description = '等待完成';
 
-const items = ref([
+const steps = [
   {
     title: '开题报告',
-    description,
+    content: UploadOpening,
   },
   {
     title: '开题答辩',
-    description,
+    // 和12行的UploadOpening一样，这里也是一个组件，修改字符串成组件名即可
+    content: '上传开题报告',
   },
   {
     title: '中期成果',
-    description,
+    content: '上传开题报告',
   },
   {
     title: '上传终稿',
-    description,
+    content: '上传开题报告',
   },
   {
     title: '答辩申请稿',
-    description,
+    content: '上传开题报告',
   },
   {
     title: '最终成绩',
-    description,
+    content: '上传开题报告',
   },
-]);
+]
 
-const nextStep = () => {
-  if (current.value < items.value.length) {
-    current.value++;
-  }
-};
-const prevStep = () => {
-  if (current.value > 0) {
-    current.value--;
-  }
-};
+const items = steps.map(item => ({ key: item.title, title: item.title }));
+
 </script>
 <style scoped>
-.custom-button {
-  margin-top: 8px;
-  padding: 8px 16px;
-  background-color: #1890ff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+
+.steps-content {
+  margin-top: 16px;
+  border: 1px dashed #e9e9e9;
+  border-radius: 6px;
+  background-color: #fafafa;
+  min-height: 200px;
+  text-align: center;
+  padding-top: 80px;
 }
 
-.prev-button {
-  margin-right: 8px;
-}
 
-.next-button {
-  margin-left: 1080px;
-}
-
-button:disabled {
-  background-color: #f5f5f5;
-  color: #d9d9d9;
-  cursor: not-allowed;
+[data-theme='dark'] .steps-content {
+  background-color: #2f2f2f;
+  border: 1px dashed #404040;
 }
 </style>
 
