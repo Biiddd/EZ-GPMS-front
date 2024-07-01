@@ -1,9 +1,5 @@
 <template>
   <a-layout>
-    <a-layout-header class="header">
-      <div class="logo" />
-
-    </a-layout-header>
     <a-layout-content style="padding: 0 50px">
       <a-layout style="padding: 24px 0; background: #fff">
         <a-layout-sider width="200" style="background: #fff">
@@ -41,11 +37,13 @@
               <template #title>
                 <span>
                   <notification-outlined />
-                  个人空间
+                  subnav 3
                 </span>
               </template>
-              <a-menu-item key="9">基本信息</a-menu-item>
-              <a-menu-item key="10">修改信息</a-menu-item>
+              <a-menu-item key="9">option9</a-menu-item>
+              <a-menu-item key="10">option10</a-menu-item>
+              <a-menu-item key="11">option11</a-menu-item>
+              <a-menu-item key="12">option12</a-menu-item>
             </a-sub-menu>
           </a-menu>
         </a-layout-sider>
