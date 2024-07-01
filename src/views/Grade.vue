@@ -1,5 +1,4 @@
 <script setup>
-
 import GradeTable from "@/components/GradeTable.vue";
 </script>
 

@@ -1,11 +1,10 @@
 <script setup>
 
-import Timeline from "../components/Stepline.vue";
-import Stepline from "../components/Stepline.vue";
+import StepLine from "@/components/StepLine.vue";
 </script>
 
 <template>
-<stepline></stepline>
+<StepLine></StepLine>
 </template>
 
 <style scoped>
