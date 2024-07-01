@@ -4,8 +4,10 @@ import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
+  LockOutlined,
+  FormOutlined,
 } from "@ant-design/icons-vue";
-const selectedKeys1 = ref<string[]>(["2"]);
+
 const selectedKeys2 = ref<string[]>(["1"]);
 const openKeys = ref<string[]>(["sub1"]);
 </script>
@@ -26,9 +28,7 @@ const openKeys = ref<string[]>(["sub1"]);
           >
             <a-menu-item key="sub1">
               <user-outlined />
-              <router-link to="/process">
-                进度
-              </router-link>
+              <router-link to="/process"> 进度</router-link>
             </a-menu-item>
 
             <a-menu-item key="sub2">
@@ -45,14 +45,29 @@ const openKeys = ref<string[]>(["sub1"]);
                   个人空间
                 </span>
               </template>
-              <a-menu-item key="9">基本信息</a-menu-item>
+
+              <a-menu-item key="9">
+                <router-link to="/info">
+                  <user-outlined />
+                  基本信息
+                </router-link>
+              </a-menu-item>
+
               <a-menu-item key="10">
                 <router-link to="/editInfo">
+                  <FormOutlined />
                   修改信息
-                </router-link></a-menu-item>
+                </router-link>
+              </a-menu-item>
+
+              <a-menu-item key="11">
+                <router-link to="/changePasswd">
+                  <LockOutlined />
+                  修改密码
+                </router-link>
+              </a-menu-item>
             </a-sub-menu>
           </a-menu>
-
         </a-layout-sider>
         <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
           <router-view />

@@ -28,15 +28,6 @@ const checked = ref(false);
     layout="horizontal"
     style="max-width: 600px"
   >
-    
-    <a-form-item label="密码">
-      <a-input-password />
-    </a-form-item>
-
-    <a-form-item label="确认密码">
-      <a-input-password />
-    </a-form-item>
-
     <a-form-item label="联系方式">
       <a-input />
     </a-form-item>

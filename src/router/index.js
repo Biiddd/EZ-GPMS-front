@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "@/views/Home.vue";
 
 const routes = [
   {
@@ -12,22 +12,31 @@ const routes = [
     name: "Home",
     component: Home,
     redirect: "/home",
-    meta: { requiresAuth: true },
     children: [
       {
         path: "/process",
         name: "process",
-        component: () => import("../views/Process.vue"),
+        component: () => import("@/views/Process.vue"),
       },
       {
         path: "/grade",
         name: "grade",
-        component: () => import("../views/Grade.vue"),
+        component: () => import("@/views/Grade.vue"),
+      },
+      {
+        path: "/info",
+        name: "info",
+        component: () => import("@/views/Info.vue"),
       },
       {
         path: "/editInfo",
         name: "editInfo",
-        component: () => import("../components/InfoEditor.vue"),
+        component: () => import("@/components/InfoEditor.vue"),
+      },
+      {
+        path: "/changePasswd",
+        name: "changePasswd",
+        component: () => import("@/views/ChangePasswd.vue"),
       }
     ],
   },
