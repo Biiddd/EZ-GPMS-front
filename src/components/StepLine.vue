@@ -10,10 +10,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import UploadOpening from "./UploadOpening.vue";
+import UploadMidCheck from "./UploadMidCheck.vue";
 
 // dev阶段手动更改current的值，来查看不同步骤的内容
 // 前后端联调时，current的值由后端返回
-const current = ref<number>(0);
+const current = ref<number>(2);
 
 const steps = [
   {
@@ -27,7 +28,7 @@ const steps = [
   },
   {
     title: '中期成果',
-    content: '上传开题报告',
+    content: UploadMidCheck,
   },
   {
     title: '上传终稿',
