@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from "vue";
 import { message } from "ant-design-vue";
-import axios from "axios";
+import http from "@/http";
 
 const labelCol = { style: { width: "150px" } };
 const wrapperCol = { span: 14 };
 
+const user_id = 111111111111;
 const oldPasswd: string = "1234"; // 测试假设旧密码是 1234
 // const oldPasswd = ref<string>("");
 
@@ -86,26 +87,37 @@ const passwdLength = () => {
   }
 };
 
-const onFinish = () => {
+// 提交表单处理
+const onFinish = async () => {
   // 如果所有检查通过，发送数据到后端
   if (
-    wrongOldPasswd() &&
-    emptyNewPasswd() &&
-    oldAndNewPasswd() &&
-    comparePasswd() &&
-    passwdLength()
+      wrongOldPasswd() &&
+      emptyNewPasswd() &&
+      oldAndNewPasswd() &&
+      comparePasswd() &&
+      passwdLength()
   ) {
-    http.post("/changePasswd", {
-      newPasswd: formState.newPasswd,
-    });
-    message.success("修改密码成功");
-    console.log("数据发送到后端：", {
-      newPasswd: formState.newPasswd,
-    });
+    try {
+      const response = await http.post("/changePasswd", {
+        user_id: user_id,
+        newPasswd: formState.newPasswd,
+      });
 
-    formState.inputOldPasswd = "";
-    formState.newPasswd = "";
-    formState.confirmPasswd = "";
+      // 只有当响应状态码为 200 时，才显示成功消息
+      if (response.status === 200) {
+        message.success("修改密码成功");
+
+        // 清空表单数据
+        formState.inputOldPasswd = "";
+        formState.newPasswd = "";
+        formState.confirmPasswd = "";
+      } else {
+        message.error("修改密码失败，请稍后重试");
+      }
+    } catch (error) {
+      message.error("网络错误，请稍后重试");
+      console.error("修改密码时出错:", error);
+    }
   }
 };
 
