@@ -40,6 +40,11 @@ const routes = [
       }
     ],
   },
+  {
+    path: "/teacherHome",
+    name: "teacherHome",
+    component: () => import("@/views/TeacherHome.vue"),
+  }
 ];
 
 const router = createRouter({
