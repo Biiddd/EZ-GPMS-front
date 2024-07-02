@@ -13,9 +13,10 @@ import UploadOpening from "./UploadOpening.vue";
 import UploadMidCheck from "./UploadMidCheck.vue";
 import Upload_Final from "./Upload_Final.vue";
 import Upload_Defense from "./Upload_Defense.vue";
-// dev阶段手动更改current的值，来查看不同步骤的内容
-// 前后端联调时，current的值由后端返回
-const current = ref<number>(2);
+import WaitingOpeningDefense from "./WaitingOpeningDefense.vue";
+import ShowFinalScore from "./ShowFinalScore.vue";
+
+const current = ref<number>(4);
 
 const steps = [
   {
@@ -24,8 +25,7 @@ const steps = [
   },
   {
     title: '开题答辩',
-    // 和12行的UploadOpening一样，这里也是一个组件，修改字符串成组件名即可
-    content: '上传开题报告',
+    content: WaitingOpeningDefense,
   },
   {
     title: '中期成果',
@@ -41,7 +41,7 @@ const steps = [
   },
   {
     title: '最终成绩',
-    content: '上传开题报告',
+    content: ShowFinalScore,
   },
 ]
 
