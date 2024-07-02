@@ -11,7 +11,8 @@
 import { ref } from 'vue';
 import UploadOpening from "./UploadOpening.vue";
 import UploadMidCheck from "./UploadMidCheck.vue";
-
+import Upload_Final from "./Upload_Final.vue";
+import Upload_Defense from "./Upload_Defense.vue";
 // dev阶段手动更改current的值，来查看不同步骤的内容
 // 前后端联调时，current的值由后端返回
 const current = ref<number>(2);
@@ -32,11 +33,11 @@ const steps = [
   },
   {
     title: '上传终稿',
-    content: '上传开题报告',
+    content: Upload_Final,
   },
   {
     title: '答辩申请稿',
-    content: '上传开题报告',
+    content: Upload_Defense,
   },
   {
     title: '最终成绩',
@@ -65,5 +66,6 @@ const items = steps.map(item => ({ key: item.title, title: item.title }));
   border: 1px dashed #404040;
 }
 </style>
+
 
 
