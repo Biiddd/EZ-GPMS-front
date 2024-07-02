@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { UploadOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import axios from "axios";
+import http from "@/http";
 
 const fileList1 = ref([]);
 const formData1 = ref(new FormData());
@@ -70,7 +70,7 @@ const handleSubmit = async () => {
   }
 
   try {
-    const response1 = await axios.post(
+    const response1 = await http.post(
       "/api/stu/upload/midReport",
       formData1.value,
       {
@@ -86,8 +86,8 @@ const handleSubmit = async () => {
       message.error("中期报告上传失败");
     }
 
-    const response2 = await axios.post(
-        "/api/stu/upload/midResult",
+    const response2 = await http.post(
+        "/stu/upload/midResult",
         formData1.value,
         {
           headers: {

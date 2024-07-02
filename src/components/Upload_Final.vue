@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { UploadOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import axios from "axios";
+import http from "@/http";
 
 const fileList = ref([]);
 const formData = ref(new FormData());
@@ -40,7 +40,7 @@ const handleSubmit = async () => {
     return;
   }
   try {
-    const response = await axios.post("/api/stu/upload/final", formData.value, {
+    const response = await http.post("/stu/upload/final", formData.value, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

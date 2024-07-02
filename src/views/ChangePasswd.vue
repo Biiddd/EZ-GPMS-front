@@ -95,7 +95,7 @@ const onFinish = () => {
     comparePasswd() &&
     passwdLength()
   ) {
-    axios.post("/api/changePasswd", {
+    http.post("/changePasswd", {
       newPasswd: formState.newPasswd,
     });
     message.success("修改密码成功");

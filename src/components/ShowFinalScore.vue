@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import axios from "axios";
+import http from "@/http";
 import { ref } from "vue";
 
 const finalScore = ref<number>();
 
 console.log("finalScore", finalScore);
 
-axios.get("/api/stu/getScore").then((res) => {
+http.get("/stu/getScore").then((res) => {
   finalScore.value = res.data.finalScore;
 });
 </script>

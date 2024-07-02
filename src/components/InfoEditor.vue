@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { RegionSelects } from "v-region";
-import axios from "axios";
+import http from "@/http";
 
 const labelCol = { style: { width: "150px" } };
 const wrapperCol = { span: 14 };
@@ -16,18 +16,21 @@ const region = ref({
   town: "",
 });
 
-const onSubmitClick = () => {
+const onSubmitClick = async () => {
   console.log(region.value);
   console.log(newPhone.value);
   console.log(newEmail.value);
-  axios.post("/api/editInfo", {
-    newPhone: newPhone.value,
-    newEmail: newEmail.value,
-    province: region.value.province,
-    city: region.value.city,
-    area: region.value.area,
-  });
-
+  try {
+    await http.post("/editInfo", {
+      newPhone: newPhone.value,
+      newEmail: newEmail.value,
+      province: region.value.province,
+      city: region.value.city,
+      area: region.value.area,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 

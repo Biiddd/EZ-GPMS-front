@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { UploadOutlined } from "@ant-design/icons-vue";
 import { message } from "ant-design-vue";
-import axios from "axios";
+import http from "@/http";
 
 const outSchool = ref<boolean>(false);
 
@@ -104,8 +104,8 @@ const handleSubmit = async () => {
   try {
     // 上传校外毕设申请
     if (outSchool) {
-      const response0 = await axios.post(
-        "/api/stu/upload/outSchool",
+      const response0 = await http.post(
+        "/stu/upload/outSchool",
         formData0.value,
         {
           headers: {
@@ -122,8 +122,8 @@ const handleSubmit = async () => {
     }
 
     // 上传开题报告
-    const response1 = await axios.post(
-      "/api/stu/upload/start",
+    const response1 = await http.post(
+      "/stu/upload/start",
       formData1.value,
       {
         headers: {
@@ -139,8 +139,8 @@ const handleSubmit = async () => {
     }
 
     // 上传外文翻译
-    const response2 = await axios.post(
-      "/api/stu/upload/translation",
+    const response2 = await http.post(
+      "/stu/upload/translation",
       formData2.value,
       {
         headers: {
