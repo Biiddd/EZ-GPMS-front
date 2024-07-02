@@ -57,7 +57,7 @@ const onSubmitClick = async () => {
       <a-input />
     </a-form-item>
 
-    <a-form-item>
+    <a-form-item :wrapper-col="{ offset: 6, span:  6 }">
       <a-button type="primary" @click="onSubmitClick">确认编辑</a-button>
     </a-form-item>
   </a-form>

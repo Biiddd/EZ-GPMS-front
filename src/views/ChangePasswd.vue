@@ -77,14 +77,14 @@ const oldAndNewPasswd = () => {
   }
 };
 
-const passwdLength = ()=>{
-  if((formState.confirmPasswd.length < 6) || (formState.newPasswd.length > 20)){
+const passwdLength = () => {
+  if (formState.confirmPasswd.length < 6 || formState.newPasswd.length > 20) {
     message.error("密码长度不能小于6位或大于20位");
     return false;
-  }else{
+  } else {
     return true;
   }
-}
+};
 
 const onFinish = () => {
   // 如果所有检查通过，发送数据到后端
@@ -149,7 +149,7 @@ const onFinishFailed = (errorInfo: any) => {
       />
     </a-form-item>
 
-    <a-form-item>
+    <a-form-item :wrapper-col="{ offset: 6, span: 6 }">
       <a-button :disabled="disabled" type="primary" html-type="submit">
         确认修改
       </a-button>
