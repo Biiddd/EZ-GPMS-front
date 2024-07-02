@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "ESModuleInterop": true,
-    "lib": ["ES2015", "DOM"],
+    "lib": ["ES2017","ES2015", "DOM"],
     "baseUrl": "./",
     "paths": {
       "@/*": [
