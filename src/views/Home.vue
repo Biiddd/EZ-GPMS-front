@@ -26,19 +26,19 @@ const openKeys = ref<string[]>(["sub1"]);
             mode="inline"
             style="height: 100%"
           >
-            <a-menu-item key="sub1">
+            <a-menu-item key="1">
               <user-outlined />
               <router-link to="/process"> 进度</router-link>
             </a-menu-item>
 
-            <a-menu-item key="sub2">
+            <a-menu-item key="2">
               <router-link to="/grade">
                 <laptop-outlined />
                 成绩
               </router-link>
             </a-menu-item>
 
-            <a-sub-menu key="sub3">
+            <a-sub-menu key="sub1">
               <template #title>
                 <span>
                   <notification-outlined />
@@ -46,21 +46,21 @@ const openKeys = ref<string[]>(["sub1"]);
                 </span>
               </template>
 
-              <a-menu-item key="9">
+              <a-menu-item key="11">
                 <router-link to="/info">
                   <user-outlined />
                   基本信息
                 </router-link>
               </a-menu-item>
 
-              <a-menu-item key="10">
+              <a-menu-item key="12">
                 <router-link to="/editInfo">
                   <FormOutlined />
                   修改信息
                 </router-link>
               </a-menu-item>
 
-              <a-menu-item key="11">
+              <a-menu-item key="13">
                 <router-link to="/changePasswd">
                   <LockOutlined />
                   修改密码
