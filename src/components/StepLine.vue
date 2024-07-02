@@ -1,22 +1,16 @@
-<template>
-  <div>
-    <a-steps :current="current" :items="items"></a-steps>
-    <div class="steps-content">
-      <component :is="steps[current].content" />
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import { ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import UploadOpening from "./UploadOpening.vue";
 import UploadMidCheck from "./UploadMidCheck.vue";
 import Upload_Final from "./Upload_Final.vue";
 import Upload_Defense from "./Upload_Defense.vue";
 import WaitingOpeningDefense from "./WaitingOpeningDefense.vue";
 import ShowFinalScore from "./ShowFinalScore.vue";
+import http from "@/http";
 
-const current = ref<number>(4);
+const user_id = 111111111111; // dev阶段手动设置
+
+const current = ref<number>();
 
 const steps = [
   {
@@ -47,7 +41,29 @@ const steps = [
 
 const items = steps.map(item => ({ key: item.title, title: item.title }));
 
+defineExpose({ current, items });
+
+onMounted(async () => {
+  try {
+    const response = await http.post("/stu/getState", {user_id: user_id});
+    current.value = response.data.stu_states;
+    console.log("当前步骤：", current.value);
+  } catch (error) {
+    console.error("获取当前步骤失败:", error);
+  }
+});
+
 </script>
+
+<template>
+  <div>
+    <a-steps :current="current" :items="items"></a-steps>
+    <div class="steps-content" v-if="steps[current]">
+      <component :is="steps[current].content" />
+    </div>
+  </div>
+</template>
+
 <style scoped>
 
 .steps-content {
