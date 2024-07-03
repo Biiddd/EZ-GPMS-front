@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
   LockOutlined,
-  FormOutlined,
-} from "@ant-design/icons-vue";
+  FormOutlined
+} from '@ant-design/icons-vue';
 
-const selectedKeys2 = ref<string[]>(["1"]);
-const openKeys = ref<string[]>(["sub1"]);
+const selectedKeys2 = ref<string[]>(['1']);
+const openKeys = ref<string[]>(['sub1']);
 </script>
 
 <template>
@@ -24,8 +24,7 @@ const openKeys = ref<string[]>(["sub1"]);
             v-model:selectedKeys="selectedKeys2"
             v-model:openKeys="openKeys"
             mode="inline"
-            style="height: 100%"
-          >
+            style="height: 100%">
             <a-menu-item key="1">
               <user-outlined />
               <router-link to="/process"> 进度</router-link>
@@ -58,7 +57,6 @@ const openKeys = ref<string[]>(["sub1"]);
                 要求上传
               </router-link>
             </a-menu-item>
-
 
             <a-sub-menu key="sub1">
               <template #title>

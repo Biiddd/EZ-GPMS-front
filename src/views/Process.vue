@@ -1,12 +1,9 @@
 <script setup>
-
-import StepLine from "@/components/StepLine.vue";
+import StepLine from '@/components/StepLine.vue';
 </script>
 
 <template>
-<StepLine></StepLine>
+  <StepLine></StepLine>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

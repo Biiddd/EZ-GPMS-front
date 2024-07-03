@@ -1,40 +1,40 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import { UploadOutlined } from "@ant-design/icons-vue";
-import { message } from "ant-design-vue";
-import http from "@/http";
+import { ref } from 'vue';
+import { UploadOutlined } from '@ant-design/icons-vue';
+import { message } from 'ant-design-vue';
+import http from '@/http';
 
 const fileList = ref([]);
 const formData = ref(new FormData());
 
-const labelCol = { style: { width: "150px" } };
+const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
 
 const handleBeforeUpload = (file: any) => {
   // Check if a file is already uploaded
   if (fileList.value.length > 0) {
-    message.error("只能上传一个文件");
+    message.error('只能上传一个文件');
     return false; // Prevent automatic upload
   }
 
   // Store file in formData for later submission
-  formData.value.append("files", file);
+  formData.value.append('files', file);
   fileList.value.push({
     uid: file.uid,
     name: file.name,
-    status: "done",
-    originFileObj: file,
+    status: 'done',
+    originFileObj: file
   });
   return false;
 };
 
-const handleRemove = (file:any) => {
+const handleRemove = (file: any) => {
   const index = fileList.value.findIndex((item) => item.uid === file.uid);
   if (index !== -1) {
     fileList.value.splice(index, 1);
     const newFormData = new FormData();
     fileList.value.forEach((item) => {
-      newFormData.append("files", item.originFileObj);
+      newFormData.append('files', item.originFileObj);
     });
     formData.value = newFormData;
   }
@@ -42,27 +42,23 @@ const handleRemove = (file:any) => {
 
 const handleSubmit = async () => {
   if (fileList.value.length === 0) {
-    message.error("未上传答辩申请表，请上传");
+    message.error('未上传答辩申请表，请上传');
     return;
   }
   try {
-    const response = await http.post(
-        "/stu/upload/defenseApply",
-        formData.value,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        },
-    );
+    const response = await http.post('/stu/upload/defenseApply', formData.value, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
 
     if (response.status === 200) {
-      message.success("答辩申请表上传成功");
+      message.success('答辩申请表上传成功');
     } else {
-      message.error("答辩申请表上传失败");
+      message.error('答辩申请表上传失败');
     }
   } catch (error) {
-    message.error("上传过程中发生错误");
+    message.error('上传过程中发生错误');
   }
 };
 </script>
@@ -72,16 +68,14 @@ const handleSubmit = async () => {
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
     layout="horizontal"
-    style="max-width: 600px"
-  >
+    style="max-width: 600px">
     <a-form-item :wrapper-col="{ offset: 14, span: 14 }">
       <a-upload
         :file-list="fileList"
         list-type="picture"
         accept=".pdf"
         :before-upload="handleBeforeUpload"
-        :on-remove="handleRemove"
-      >
+        :on-remove="handleRemove">
         <a-button size="large" v-if="fileList.length < 1">
           <upload-outlined />
           选择答辩申请表

@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
   LockOutlined,
-  FormOutlined,
-} from "@ant-design/icons-vue";
+  FormOutlined
+} from '@ant-design/icons-vue';
 
-const selectedKeys2 = ref<string[]>(["1"]);
-const openKeys = ref<string[]>(["sub1"]);
+const selectedKeys2 = ref<string[]>(['1']);
+const openKeys = ref<string[]>(['sub1']);
 </script>
 
 <template>
@@ -21,11 +21,10 @@ const openKeys = ref<string[]>(["sub1"]);
       <a-layout style="padding: 24px 0; background: #fff">
         <a-layout-sider width="200" style="background: #fff">
           <a-menu
-              v-model:selectedKeys="selectedKeys2"
-              v-model:openKeys="openKeys"
-              mode="inline"
-              style="height: 100%"
-          >
+            v-model:selectedKeys="selectedKeys2"
+            v-model:openKeys="openKeys"
+            mode="inline"
+            style="height: 100%">
             <a-menu-item key="sub1">
               <user-outlined />
               <router-link to="/process">学生列表</router-link>
@@ -78,6 +77,4 @@ const openKeys = ref<string[]>(["sub1"]);
   </a-layout>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

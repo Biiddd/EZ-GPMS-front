@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-import { RegionSelects } from "v-region";
-import http from "@/http";
+import { onMounted, ref } from 'vue';
+import { RegionSelects } from 'v-region';
+import http from '@/http';
 
-const labelCol = { style: { width: "150px" } };
+const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
 
 const user_id = 111111111111; // dev阶段手动设置
@@ -16,10 +16,10 @@ interface RegionInputModel {
 }
 
 const region = ref<RegionInputModel>({
-  province: "",
-  city: "",
-  area: "",
-  town: "",
+  province: '',
+  city: '',
+  area: '',
+  town: ''
 });
 
 interface UserInfo {
@@ -34,25 +34,25 @@ interface UserInfo {
 }
 
 const thisUserInfo = ref<UserInfo>({
-  id: "",
-  name: "",
-  age: "",
-  gender: "",
-  type: "",
-  tel: "",
-  email: "",
-  detailAdd: "",
+  id: '',
+  name: '',
+  age: '',
+  gender: '',
+  type: '',
+  tel: '',
+  email: '',
+  detailAdd: ''
 });
 
 const onSubmitClick = async () => {
   try {
-    await http.post("/editInfo", {
+    await http.post('/editInfo', {
       user_id: user_id,
       tel: thisUserInfo.value.tel,
       email: thisUserInfo.value.email,
       province: region.value.province,
       city: region.value.city,
-      area: region.value.area,
+      area: region.value.area
     });
   } catch (error) {
     console.log(error);
@@ -60,7 +60,7 @@ const onSubmitClick = async () => {
 };
 
 onMounted(() => {
-  http.post("/getInfo", { user_id: user_id }).then((res) => {
+  http.post('/getInfo', { user_id: user_id }).then((res) => {
     thisUserInfo.value.tel = res.data.tel;
     thisUserInfo.value.email = res.data.email;
     thisUserInfo.value.detailAdd = res.data.detailAdd;
@@ -68,7 +68,7 @@ onMounted(() => {
       province: res.data.province,
       city: res.data.city,
       area: res.data.area,
-      town: res.data.town,
+      town: res.data.town
     };
   });
 });
@@ -79,8 +79,7 @@ onMounted(() => {
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
     layout="horizontal"
-    style="max-width: 600px"
-  >
+    style="max-width: 600px">
     <a-form-item label="联系方式">
       <a-input v-model:value="thisUserInfo.tel" />
     </a-form-item>
