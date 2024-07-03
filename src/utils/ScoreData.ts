@@ -1,108 +1,53 @@
-import {ref} from "vue";
-
 export interface ScoreData {
     id: string;
 
     // 开题报告
-    startScore1: number;
-    startScore2: number;
-    startScore3: number;
-    startScore: number;
+    startScore1: number | null;
+    startScore2: number | null;
+    startScore3: number | null;
+    startScore: number | null;
     startEva: string | null;
 
     // 外文翻译
-    transScore1: number;
-    transScore2: number;
-    transScore3: number;
-    transScore: number;
+    transScore1: number | null;
+    transScore2: number | null;
+    transScore3: number | null;
+    transScore: number | null;
     transEva: string | null;
 
     // 中期检查
-    midScore1: number;
-    midScore2: number;
-    midScore3: number;
-    midScore: number;
+    midScore1: number | null;
+    midScore2: number | null;
+    midScore3: number | null;
+    midScore: number | null;
     midEva: string | null;
 
     // 指导老师
-    teachScore1: number;
-    teachScore2: number;
-    teachScore3: number;
-    teachScore4: number;
-    teachScore5: number;
-    teachScore: number;
+    teachScore1: number | null;
+    teachScore2: number | null;
+    teachScore3: number | null;
+    teachScore4: number | null;
+    teachScore5: number | null;
+    teachScore: number | null;
     teachEva: string | null;
 
     // 评阅老师
-    readScore1: number;
-    readScore2: number;
-    readScore3: number;
-    readScore4: number;
-    readScore: number;
+    readScore1: number | null;
+    readScore2: number | null;
+    readScore3: number | null;
+    readScore4: number | null;
+    readScore: number | null;
     readEva: string | null;
 
     // 答辩小组
-    defScore1: number;
-    defScore2: number;
-    defScore3: number;
-    defScore4: number;
-    defScore: number;
+    defScore1: number | null;
+    defScore2: number | null;
+    defScore3: number | null;
+    defScore4: number | null;
+    defScore: number | null;
     defEva: string | null;
 
     // 委员会总评
-    finalScore: number;
+    finalScore: number | null;
     finalEva: string | null;
 }
-
-export const scoreData = ref<ScoreData>({
-    id: '',
-    // 开题报告
-    startScore1: 0,
-    startScore2: 0,
-    startScore3: 0,
-    startScore: 0,
-    startEva: '',
-
-    // 外文翻译
-    transScore1: 0,
-    transScore2: 0,
-    transScore3: 0,
-    transScore: 0,
-    transEva: '',
-
-    // 中期检查
-    midScore1: 0,
-    midScore2: 0,
-    midScore3: 0,
-    midScore: 0,
-    midEva: '',
-
-    // 指导老师
-    teachScore1: 0,
-    teachScore2: 0,
-    teachScore3: 0,
-    teachScore4: 0,
-    teachScore5: 0,
-    teachScore: 0,
-    teachEva: '',
-
-    // 评阅老师
-    readScore1: 0,
-    readScore2: 0,
-    readScore3: 0,
-    readScore4: 0,
-    readScore: 0,
-    readEva: '',
-
-    // 答辩小组
-    defScore1: 0,
-    defScore2: 0,
-    defScore3: 0,
-    defScore4: 0,
-    defScore: 0,
-    defEva: '',
-
-    // 委员会总评
-    finalScore: 0,
-    finalEva: '',
-});

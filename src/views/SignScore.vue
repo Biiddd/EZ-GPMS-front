@@ -38,47 +38,47 @@ const steps = [
 ];
 
 function setState() {
-  if (thisScore.value.transScore === -1) {
+  if (thisScore.value.transScore === null) {
     current.value = 0;
   }
 
   if (
-    thisScore.value.transScore !== -1  &&
-    thisScore.value.startScore === -1
+    thisScore.value.transScore !== null  &&
+    thisScore.value.startScore === null
   ) {
     current.value = 1;
   }
 
   if (
-    thisScore.value.startScore !== -1 &&
-    thisScore.value.midScore === -1
+    thisScore.value.startScore !== null &&
+    thisScore.value.midScore === null
   ) {
     current.value = 2;
   }
 
   if (
-    thisScore.value.midScore !== -1 &&
-    thisScore.value.teachScore === -1
+    thisScore.value.midScore !== null &&
+    thisScore.value.teachScore === null
   ) {
     current.value = 3;
   }
 
   if (
-    thisScore.value.teachScore !== -1 &&
-    thisScore.value.readScore === -1
+    thisScore.value.teachScore !== null &&
+    thisScore.value.readScore === null
   ) {
     current.value = 4;
   }
 
-  if (thisScore.value.readScore !== -1 &&
-      thisScore.value.defScore === -1
+  if (thisScore.value.readScore !== null &&
+      thisScore.value.defScore === null
   ) {
     current.value = 5;
   }
 
   if (
-    thisScore.value.defScore !== -1 &&
-    thisScore.value.finalScore === -1
+    thisScore.value.defScore !== null &&
+    thisScore.value.finalScore === null
   ) {
     current.value = 6;
   }

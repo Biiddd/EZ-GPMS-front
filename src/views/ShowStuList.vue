@@ -35,7 +35,7 @@ const scoreData = ref<ScoreData>();
 
 // -1 显示为尚未评分
 function formatScore(score: number | string): string | number {
-  return score === -1 ? "尚未评分" : score;
+  return score === null ? "尚未评分" : score;
 }
 
 // null 或空字符串显示为无评价
