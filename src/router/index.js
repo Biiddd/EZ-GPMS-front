@@ -37,6 +37,16 @@ const routes = [
         path: "/changePasswd",
         name: "changePasswd",
         component: () => import("@/views/ChangePasswd.vue"),
+      },
+      {
+        path: "/showStu",
+        name: "showStu",
+        component: () => import("@/views/ShowStuList.vue"),
+      },
+      {
+        path: "/signScore",
+        name: "signScore",
+        component: () => import("@/views/SignScore.vue"),
       }
     ],
   },

@@ -38,6 +38,20 @@ const openKeys = ref<string[]>(["sub1"]);
               </router-link>
             </a-menu-item>
 
+            <a-menu-item key="3">
+              <router-link to="/showStu">
+                <laptop-outlined />
+                学生列表
+              </router-link>
+            </a-menu-item>
+
+            <a-menu-item key="4">
+              <router-link to="/signScore">
+                <laptop-outlined />
+                打分页面
+              </router-link>
+            </a-menu-item>
+
             <a-sub-menu key="sub1">
               <template #title>
                 <span>
