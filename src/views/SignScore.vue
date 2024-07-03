@@ -58,13 +58,13 @@ function setState() {
 
   if (
     thisScore.value.midScore !== -1 &&
-    thisScore.value.finalScore === -1
+    thisScore.value.teachScore === -1
   ) {
     current.value = 3;
   }
 
   if (
-    thisScore.value.finalScore !== -1 &&
+    thisScore.value.teachScore !== -1 &&
     thisScore.value.readScore === -1
   ) {
     current.value = 4;
