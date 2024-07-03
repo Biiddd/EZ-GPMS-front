@@ -1,6 +1,8 @@
 import {ref} from "vue";
 
 export interface ScoreData {
+    id: string;
+
     // 开题报告
     startScore1: number;
     startScore2: number;
@@ -53,6 +55,7 @@ export interface ScoreData {
 }
 
 export const scoreData = ref<ScoreData>({
+    id: '',
     // 开题报告
     startScore1: 0,
     startScore2: 0,
