@@ -46,7 +46,7 @@ defineExpose({ current, items });
 onMounted(async () => {
   try {
     const response = await http.post('/stu/getState', { user_id: user_id });
-    current.value = response.data.stu_states;
+    current.value = Number(response.data.stu_states);
     console.log('当前步骤：', current.value);
   } catch (error) {
     console.error('获取当前步骤失败:', error);
