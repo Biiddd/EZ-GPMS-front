@@ -108,9 +108,15 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
       layout="horizontal"
       style="max-width: 600px"
     >
-      <div v-if="current === 0">
-        <a-form-item label="外文翻译成绩">
-          <a-input v-model="thisScore.transScore" />
+      <div v-if="current === 0" class="form-container">
+        <a-form-item label="翻译阅读理解成绩" >
+          <a-input v-model="thisScore.transScore1" />
+        </a-form-item>
+        <a-form-item label="翻译准确性成绩" >
+          <a-input v-model="thisScore.transScore2" />
+        </a-form-item>
+        <a-form-item label="规范性与质量成绩" >
+          <a-input v-model="thisScore.transScore3" />
         </a-form-item>
       </div>
 
@@ -193,3 +199,5 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
   border: 1px dashed #404040;
 }
 </style>
+
+
