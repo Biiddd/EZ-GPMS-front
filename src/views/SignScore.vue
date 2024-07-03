@@ -122,7 +122,13 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
       <!--      开题打分表单      -->
       <div v-if="current === 1">
-        <a-form-item label="开题成绩">
+        <a-form-item label="调研资料获取能力">
+          <a-input v-model="thisScore.startScore" />
+        </a-form-item>
+        <a-form-item label="方案设计合理性">
+          <a-input v-model="thisScore.startScore" />
+        </a-form-item>
+        <a-form-item label="规范性与质量">
           <a-input v-model="thisScore.startScore" />
         </a-form-item>
       </div>
