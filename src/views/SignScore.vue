@@ -151,10 +151,19 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
       <!--      终稿打分表单      -->
       <div v-if="current === 3">
-        <a-form-item label="终稿成绩">
+        <a-form-item label="设计能力">
           <a-input v-model="thisScore.finalScore" />
         </a-form-item>
-        <a-form-item label="终稿评语">
+        <a-form-item label="理论应用能力">
+          <a-input v-model="thisScore.finalScore" />
+        </a-form-item>
+        <a-form-item label="知识综合运用能力">
+          <a-input v-model="thisScore.finalScore" />
+        </a-form-item>
+        <a-form-item label="素养、态度、纪律表现">
+          <a-input v-model="thisScore.finalScore" />
+        </a-form-item>
+        <a-form-item label="毕设规范性与质量">
           <a-input v-model="thisScore.finalEva" />
         </a-form-item>
       </div>
