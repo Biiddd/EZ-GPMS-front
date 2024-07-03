@@ -31,6 +31,11 @@ const openKeys = ref<string[]>(["sub1"]);
               <router-link to="/process">学生列表</router-link>
             </a-menu-item>
 
+            <a-menu-item key="sub2">
+              <user-outlined />
+              <router-link to="/ask">要求上传</router-link>
+            </a-menu-item>
+
             <a-sub-menu key="sub3">
               <template #title>
                 <span>

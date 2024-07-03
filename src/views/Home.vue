@@ -52,6 +52,14 @@ const openKeys = ref<string[]>(["sub1"]);
               </router-link>
             </a-menu-item>
 
+            <a-menu-item key="5">
+              <router-link to="/askUpload">
+                <laptop-outlined />
+                要求上传
+              </router-link>
+            </a-menu-item>
+
+
             <a-sub-menu key="sub1">
               <template #title>
                 <span>

@@ -44,6 +44,11 @@ const routes = [
         component: () => import("@/views/ShowStuList.vue"),
       },
       {
+        path: "/askUpload",
+        name: "askUpload",
+        component: () => import("@/views/askUpload.vue"),
+      },
+      {
         path: "/signScore",
         name: "signScore",
         component: () => import("@/views/SignScore.vue"),
