@@ -24,7 +24,7 @@ const steps = [
     title: "中期成绩",
   },
   {
-    title: "终稿成绩",
+    title: "导师建议成绩",
   },
   {
     title: "评阅成绩",
@@ -135,7 +135,13 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
       <!--      中期打分表单      -->
       <div v-if="current === 2">
-        <a-form-item label="中期成绩">
+        <a-form-item label="毕设进度情况">
+          <a-input v-model="thisScore.midScore" />
+        </a-form-item>
+        <a-form-item label="综合能力">
+          <a-input v-model="thisScore.midScore" />
+        </a-form-item>
+        <a-form-item label="已完成毕设质量">
           <a-input v-model="thisScore.midScore" />
         </a-form-item>
         <a-form-item label="中期评语">
