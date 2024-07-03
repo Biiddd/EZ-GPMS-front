@@ -50,7 +50,7 @@ function setState() {
   }
 
   if (
-    thisScore.value.startScore !== 1 &&
+    thisScore.value.startScore !== -1 &&
     thisScore.value.midScore === -1
   ) {
     current.value = 2;
@@ -92,7 +92,6 @@ http.post("/stu/getScore", { user_id: user_id }).then((res) => {
 
   setState();
 
-  console.log("加法：", thisScore.value.transScore + thisScore.value.startScore);
 });
 
 const items = steps.map((item) => ({ key: item.title, title: item.title }));
