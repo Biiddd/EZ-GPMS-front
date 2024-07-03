@@ -123,26 +123,26 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
       <!--      开题打分表单      -->
       <div v-if="current === 1">
         <a-form-item label="调研资料获取能力">
-          <a-input v-model="thisScore.startScore" />
+          <a-input v-model="thisScore.startScore1" />
         </a-form-item>
         <a-form-item label="方案设计合理性">
-          <a-input v-model="thisScore.startScore" />
+          <a-input v-model="thisScore.startScore2" />
         </a-form-item>
         <a-form-item label="规范性与质量">
-          <a-input v-model="thisScore.startScore" />
+          <a-input v-model="thisScore.startScore3" />
         </a-form-item>
       </div>
 
       <!--      中期打分表单      -->
       <div v-if="current === 2">
         <a-form-item label="毕设进度情况">
-          <a-input v-model="thisScore.midScore" />
+          <a-input v-model="thisScore.midScore1" />
         </a-form-item>
         <a-form-item label="综合能力">
-          <a-input v-model="thisScore.midScore" />
+          <a-input v-model="thisScore.midScore2" />
         </a-form-item>
         <a-form-item label="已完成毕设质量">
-          <a-input v-model="thisScore.midScore" />
+          <a-input v-model="thisScore.midScore3" />
         </a-form-item>
         <a-form-item label="中期评语">
           <a-textarea v-model="thisScore.midEva" />
@@ -152,19 +152,22 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
       <!--      终稿打分表单      -->
       <div v-if="current === 3">
         <a-form-item label="设计能力">
-          <a-input v-model="thisScore.finalScore" />
+          <a-input v-model="thisScore.teachScore1" />
         </a-form-item>
         <a-form-item label="理论应用能力">
-          <a-input v-model="thisScore.finalScore" />
+          <a-input v-model="thisScore.teachScore2" />
         </a-form-item>
         <a-form-item label="知识综合运用能力">
-          <a-input v-model="thisScore.finalScore" />
+          <a-input v-model="thisScore.teachScore3" />
         </a-form-item>
         <a-form-item label="素养、态度、纪律表现">
-          <a-input v-model="thisScore.finalScore" />
+          <a-input v-model="thisScore.teachScore4" />
         </a-form-item>
         <a-form-item label="毕设规范性与质量">
-          <a-input v-model="thisScore.finalEva" />
+          <a-input v-model="thisScore.teachScore5" />
+        </a-form-item>
+        <a-form-item label="中期评语">
+          <a-textarea v-model="thisScore.teachEva" />
         </a-form-item>
       </div>
 
