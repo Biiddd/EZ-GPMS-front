@@ -173,8 +173,17 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
       <!--      评阅打分表单      -->
       <div v-if="current === 4">
-        <a-form-item label="评阅成绩">
-          <a-input v-model="thisScore.readScore" />
+        <a-form-item label="毕设规范性与质量">
+          <a-input v-model="thisScore.readScore1" />
+        </a-form-item>
+        <a-form-item label="理论知识运用情况">
+          <a-input v-model="thisScore.readScore2" />
+        </a-form-item>
+        <a-form-item label="研究设计方案">
+          <a-input v-model="thisScore.readScore3" />
+        </a-form-item>
+        <a-form-item label="毕设创新型">
+          <a-input v-model="thisScore.readScore4" />
         </a-form-item>
         <a-form-item label="评阅老师评语">
           <a-input v-model="thisScore.readEva" />
@@ -183,10 +192,19 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
       <!--      答辩打分表单      -->
       <div v-if="current === 5">
-        <a-form-item label="答辩成绩">
-          <a-input v-model="thisScore.defScore" />
+        <a-form-item label="毕设陈述情况">
+          <a-input v-model="thisScore.defScore1" />
         </a-form-item>
-        <a-form-item label="答辩评语">
+        <a-form-item label="毕设（论文）水平">
+          <a-input v-model="thisScore.defScore2" />
+        </a-form-item>
+        <a-form-item label="毕设工作量评价">
+          <a-input v-model="thisScore.defScore3" />
+        </a-form-item>
+        <a-form-item label="答辩情况">
+          <a-input v-model="thisScore.defScore4" />
+        </a-form-item>
+        <a-form-item label="答辩小组评语">
           <a-input v-model="thisScore.defEva" />
         </a-form-item>
       </div>
