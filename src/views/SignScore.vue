@@ -24,7 +24,7 @@ const steps = [
     title: "中期成绩",
   },
   {
-    title: "导师建议成绩",
+    title: "导师评价成绩",
   },
   {
     title: "评阅成绩",
