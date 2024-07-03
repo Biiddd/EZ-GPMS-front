@@ -103,13 +103,28 @@ const onSubmit = async () => {
       style="max-width: 600px">
       <div v-if="current === 0" class="form-container">
         <a-form-item label="翻译阅读理解成绩" :wrapper-col="{ offset: -6, span: 6 }">
-          <a-input v-model:value="thisScore.transScore1" />
+          <a-input-number
+            size="large"
+            min="0"
+            max="5"
+            :controls="false"
+            v-model:value="thisScore.transScore1" />
         </a-form-item>
-        <a-form-item label="翻译准确性成绩">
-          <a-input v-model:value="thisScore.transScore2" />
+        <a-form-item label="翻译准确性成绩" :wrapper-col="{ offset: -6, span: 6 }">
+          <a-input-number
+            size="large"
+            min="0"
+            max="5"
+            :controls="false"
+            v-model:value="thisScore.transScore2" />
         </a-form-item>
-        <a-form-item label="规范性与质量成绩">
-          <a-input v-model:value="thisScore.transScore3" />
+        <a-form-item label="规范性与质量成绩" :wrapper-col="{ offset: -6, span: 6 }">
+          <a-input-number
+            size="large"
+            min="0"
+            max="5"
+            :controls="false"
+            v-model:value="thisScore.transScore3" />
         </a-form-item>
       </div>
 
