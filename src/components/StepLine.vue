@@ -14,7 +14,7 @@ const current = ref<number>();
 
 const steps = [
   {
-    title: '开题报告',
+    title: '上传开题报告',
     content: UploadOpening,
   },
   {
@@ -22,7 +22,7 @@ const steps = [
     content: WaitingOpeningDefense,
   },
   {
-    title: '中期成果',
+    title: '上传中期成果',
     content: UploadMidCheck,
   },
   {
@@ -30,7 +30,7 @@ const steps = [
     content: Upload_Final,
   },
   {
-    title: '答辩申请稿',
+    title: '上传答辩申请稿',
     content: Upload_Defense,
   },
   {
