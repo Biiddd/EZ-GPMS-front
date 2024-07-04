@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
-import UploadOpening from './UploadOpening.vue';
+import UploadOpening from './UploadStart.vue';
 import UploadMidCheck from './UploadMidCheck.vue';
-import Upload_Final from './Upload_Final.vue';
-import Upload_Defense from './Upload_Defense.vue';
-import WaitingOpeningDefense from './WaitingOpeningDefense.vue';
+import Upload_Final from './UploadFinal.vue';
+import Upload_Defense from './UploadDefApply.vue';
+import WaitingOpeningDefense from './WaitStartDef.vue';
 import ShowFinalScore from './ShowFinalScore.vue';
 import http from '@/http';
 
@@ -30,7 +30,7 @@ const steps = [
     content: Upload_Final
   },
   {
-    title: '上传答辩申请稿',
+    title: '上传答辩申请',
     content: Upload_Defense
   },
   {
