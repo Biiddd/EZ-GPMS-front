@@ -6,6 +6,7 @@ const wrapperCol = { span: 14 };
 
 import http from '@/http';
 import { thisScore } from '@/utils/ScoreData';
+import { message } from 'ant-design-vue';
 
 const user_id = 111111111111; // dev阶段手动设置
 
@@ -60,11 +61,13 @@ function setState() {
     current.value = 5;
   }
 
-  if (thisScore.value.defScore !== null && thisScore.value.finalScore === null) {
+  if (thisScore.value.defScore !== null && thisScore.value.finalEva === null) {
     current.value = 6;
   }
 
-  console.log('当前步骤：', current.value);
+  if (thisScore.value.defScore !== null && thisScore.value.finalEva !== null) {
+    current.value = 6;
+  }
 }
 
 http.post('/stu/getScore', { user_id: user_id }).then((res) => {
@@ -75,15 +78,89 @@ http.post('/stu/getScore', { user_id: user_id }).then((res) => {
 
 const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
+const tempFinalEva = ref<string>();
+
+
+const confirmText = ref<string>('成绩提交后无法修改, 是否确认提交?');
+const confirmLoading = ref<boolean>(false);
+const isShowConfirmDialog = ref<boolean>(false);
+const showConfirmDialog = () => {
+  isShowConfirmDialog.value = true;
+};
+
+const validSubmit = () => {
+  switch (current.value) {
+    case 0:
+      return (
+        thisScore.value.transScore1 != null &&
+        thisScore.value.transScore2 != null &&
+        thisScore.value.transScore3 != null
+      );
+    case 1:
+      return (
+        thisScore.value.startScore1 != null &&
+        thisScore.value.startScore2 != null &&
+        thisScore.value.startScore3 != null
+      );
+    case 2:
+      return (
+        thisScore.value.midScore1 != null &&
+        thisScore.value.midScore2 != null &&
+        thisScore.value.midScore3 != null
+      );
+    case 3:
+      return (
+        thisScore.value.teachScore1 != null &&
+        thisScore.value.teachScore2 != null &&
+        thisScore.value.teachScore3 != null &&
+        thisScore.value.teachScore4 != null &&
+        thisScore.value.teachScore5 != null
+      );
+    case 4:
+      return (
+        thisScore.value.readScore1 != null &&
+        thisScore.value.readScore2 != null &&
+        thisScore.value.readScore3 != null &&
+        thisScore.value.readScore4 != null
+      );
+    case 5:
+      return (
+        thisScore.value.defScore1 != null &&
+        thisScore.value.defScore2 != null &&
+        thisScore.value.defScore3 != null &&
+        thisScore.value.defScore4 != null
+      );
+    case 6:
+      return tempFinalEva.value != null;
+    default:
+      return false;
+  }
+};
+
+const handleOk = () => {
+  confirmText.value = '提交中...';
+  confirmLoading.value = true;
+  onSubmit().finally(() => {
+    confirmLoading.value = false;
+  });
+};
+
 const onSubmit = async () => {
-  try {
-    console.log('提交的成绩：', thisScore.value);
-    const response = await http.post('/teacher/signScore', {
-      user_id: user_id
-    });
-    console.log('提交成绩成功：', response);
-  } catch (error) {
-    console.error('提交成绩失败：', error);
+  if (validSubmit()) {
+    try {
+      thisScore.value.finalEva = tempFinalEva.value;
+      console.log('提交的成绩：', thisScore.value);
+      const response = await http.put('/teacher/updateScore', {
+        ...thisScore.value
+      });
+      console.log('提交成绩成功：', response);
+      isShowConfirmDialog.value = false;
+      message.success('提交成绩成功')
+    } catch (error) {
+      console.error('提交成绩失败：', error);
+    }
+  } else {
+    message.error('请填写完整的成绩');
   }
 };
 </script>
@@ -92,7 +169,7 @@ const onSubmit = async () => {
   <div>
     <a-steps :current="current" :items="items"></a-steps>
   </div>
-  <div class="steps-content">
+  <div class="steps-content" v-if="thisScore.finalEva === null">
     <a-form
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
@@ -308,13 +385,28 @@ const onSubmit = async () => {
       <!--      最终评价表单      -->
       <div v-if="current === 6">
         <a-form-item label="最终评价" :wrapper-col="{ offset: -6, span: 6 }">
-          <a-textarea v-model:value="thisScore.finalEva" />
+          <a-textarea v-model:value="tempFinalEva" />
         </a-form-item>
       </div>
       <a-form-item :wrapper-col="{ offset: 13, span: 4 }">
-        <a-button size="middle" type="primary" @click="onSubmit">提交成绩</a-button>
+        <a-button size="middle" type="primary" @click="showConfirmDialog">提交成绩</a-button>
+        <a-modal
+          v-model:open="isShowConfirmDialog"
+          title="提交确认"
+          :confirm-loading="confirmLoading"
+          @ok="handleOk">
+          <p>{{ confirmText }}</p>
+        </a-modal>
       </a-form-item>
     </a-form>
+  </div>
+
+  <div v-else class="steps-content">
+    <a-result
+      status="success"
+      title="该学生评分工作已完成"
+    >
+    </a-result>
   </div>
 </template>
 
