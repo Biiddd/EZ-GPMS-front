@@ -36,7 +36,7 @@ const uploadMidReport = (info: any) => {
       <a-upload
         v-model:file-list="midWork"
         list-type="picture"
-        accept=".pdf"
+        accept=".zip"
         @change="uploadMidWork"
         :data="{ stu_id: '111111111111', filename: '中期成果' }"
         action="http://127.0.0.1:5174/api/upload">
