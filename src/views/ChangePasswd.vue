@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue';
 import { message } from 'ant-design-vue';
-import http from '@/http';
+import http from '@/utils/http';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };

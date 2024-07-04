@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
+import StuProcess from '@/views/stu/StuProcess.vue';
+import SignScore from '@/views/teach/SignScore.vue';
 
 const routes = [
   {
@@ -16,12 +18,12 @@ const routes = [
       {
         path: "/process",
         name: "process",
-        component: () => import("@/views/Process.vue"),
+        component: StuProcess,
       },
       {
         path: "/grade",
         name: "grade",
-        component: () => import("@/views/Grade.vue"),
+        component: () => import("@/views/stu/GradeTable.vue"),
       },
       {
         path: "/info",
@@ -41,22 +43,22 @@ const routes = [
       {
         path: "/showStu",
         name: "showStu",
-        component: () => import("@/views/ShowStuList.vue"),
+        component: () => import("@/views/teach/ShowStuList.vue"),
       },
       {
-        path: "/askUpload",
-        name: "askUpload",
-        component: () => import("@/views/askUpload.vue"),
+        path: "/uploadRequire",
+        name: "uploadRequire",
+        component: () => import("@/views/teach/UploadRequirement.vue"),
       },
               {
-        path: "/groupSituation",
-        name: "groupSituation",
-        component: () => import("@/views/groupSituation.vue"),
+        path: "/groupArrange",
+        name: "groupArrange",
+        component: () => import("@/components/GroupArrange.vue"),
       },
       {
         path: "/signScore",
         name: "signScore",
-        component: () => import("@/views/SignScore.vue"),
+        component: SignScore,
       }
     ],
   },

@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
-import http from '@/http';
+import http from '@/utils/http';
 import { ScoreData } from '@/utils/ScoreData';
 
 const user_id = 111111111111; // dev阶段手动设置

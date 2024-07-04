@@ -4,7 +4,7 @@ import { ref } from 'vue';
 const labelCol = { style: { width: '300px' } };
 const wrapperCol = { span: 14 };
 
-import http from '@/http';
+import http from '@/utils/http';
 import { thisScore } from '@/utils/ScoreData';
 import { message } from 'ant-design-vue';
 

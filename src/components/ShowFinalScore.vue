@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import http from '@/http';
+import http from '@/utils/http';
 import { thisScore } from '@/utils/ScoreData';
 
 const user_id = 111111111111;

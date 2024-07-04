@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TableColumnsType } from 'ant-design-vue';
 import { onMounted, ref } from 'vue';
-import http from '@/http';
+import http from '@/utils/http';
 import { ScoreData } from '@/utils/ScoreData';
 
 const columns: TableColumnsType = [

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import { RegionSelects } from 'v-region';
-import http from '@/http';
+import http from '@/utils/http';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };

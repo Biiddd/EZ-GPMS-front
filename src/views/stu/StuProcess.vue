@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
-import UploadOpening from './UploadStart.vue';
-import UploadMidCheck from './UploadMidCheck.vue';
-import Upload_Final from './UploadFinal.vue';
-import Upload_Defense from './UploadDefApply.vue';
-import WaitingOpeningDefense from './WaitStartDef.vue';
-import ShowFinalScore from './ShowFinalScore.vue';
-import http from '@/http';
+import UploadOpening from '../../components/UploadStart.vue';
+import UploadMidCheck from '../../components/UploadMidCheck.vue';
+import Upload_Final from '../../components/UploadFinal.vue';
+import Upload_Defense from '../../components/UploadDefApply.vue';
+import WaitingOpeningDefense from '../../components/WaitStartDef.vue';
+import ShowFinalScore from '../../components/ShowFinalScore.vue';
+import http from '@/utils/http';
 
 const user_id = 111111111111; // dev阶段手动设置
 
@@ -48,6 +48,7 @@ onMounted(async () => {
     const response = await http.post('/stu/getState', { user_id: user_id });
     current.value = Number(response.data.stu_states);
     console.log('当前步骤：', current.value);
+    current.value = 4;
   } catch (error) {
     console.error('获取当前步骤失败:', error);
   }

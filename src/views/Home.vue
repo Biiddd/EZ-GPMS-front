@@ -52,14 +52,14 @@ const openKeys = ref<string[]>(['sub1']);
             </a-menu-item>
 
             <a-menu-item key="5">
-              <router-link to="/askUpload">
+              <router-link to="/uploadRequire">
                 <laptop-outlined />
                 要求上传
               </router-link>
             </a-menu-item>
 
             <a-menu-item key="6">
-              <router-link to="/groupSituation">
+              <router-link to="/groupArrange">
                 <laptop-outlined />
                 分组情况
               </router-link>
