@@ -177,6 +177,7 @@ const onSubmit = async () => {
       <div v-if="current === 0" class="form-container">
         <a-form-item label="翻译阅读理解成绩" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~1"
             size="large"
             min="0"
             max="1"
@@ -185,6 +186,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="翻译准确性成绩" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~1"
             size="large"
             min="0"
             max="1"
@@ -193,6 +195,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="规范性与质量成绩" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~1"
             size="large"
             min="0"
             max="1"
@@ -205,6 +208,7 @@ const onSubmit = async () => {
       <div v-if="current === 1">
         <a-form-item label="调研资料获取能力" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~4"
             size="large"
             min="0"
             max="4"
@@ -213,6 +217,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="方案设计合理性" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~4"
             size="large"
             min="0"
             max="4"
@@ -221,6 +226,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="规范性与质量" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~4"
             size="large"
             min="0"
             max="4"
@@ -233,6 +239,7 @@ const onSubmit = async () => {
       <div v-if="current === 2">
         <a-form-item label="毕设进度情况" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~5"
             size="large"
             min="0"
             max="5"
@@ -241,6 +248,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="综合能力" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~5"
             size="large"
             min="0"
             max="5"
@@ -249,6 +257,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="已完成毕设质量" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~5"
             size="large"
             min="0"
             max="5"
@@ -264,6 +273,7 @@ const onSubmit = async () => {
       <div v-if="current === 3">
         <a-form-item label="设计能力" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~3"
             size="large"
             min="0"
             max="3"
@@ -272,6 +282,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="理论应用能力" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~3"
             size="large"
             min="0"
             max="3"
@@ -280,6 +291,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="知识综合运用能力" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~3"
             size="large"
             min="0"
             max="3"
@@ -288,6 +300,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="素养、态度、纪律表现" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~3"
             size="large"
             min="0"
             max="3"
@@ -296,6 +309,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="毕设规范性与质量" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~3"
             size="large"
             min="0"
             max="3"
@@ -311,6 +325,7 @@ const onSubmit = async () => {
       <div v-if="current === 4">
         <a-form-item label="毕设规范性与质量" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~4"
             size="large"
             min="0"
             max="4"
@@ -319,6 +334,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="理论知识运用情况" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~4"
             size="large"
             min="0"
             max="4"
@@ -327,6 +343,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="研究设计方案" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~4"
             size="large"
             min="0"
             max="4"
@@ -335,6 +352,7 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="毕设创新型" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~3"
             size="large"
             min="0"
             max="3"
@@ -350,6 +368,7 @@ const onSubmit = async () => {
       <div v-if="current === 5">
         <a-form-item label="毕设陈述情况" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~10"
             size="large"
             min="0"
             max="10"
@@ -358,18 +377,26 @@ const onSubmit = async () => {
         </a-form-item>
         <a-form-item label="毕设（论文）水平" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~10"
             size="large"
             min="0"
             max="10"
             :controls="false"
             v-model:value="thisScore.defScore2" />
         </a-form-item>
-        <a-form-item label="毕设工作量评价" :wrapper-col="{ offset: -6, span: 6 }">
-          <a-textarea v-model:value="thisScore.defScore3" />
+        <a-form-item label="毕设工作量评分" :wrapper-col="{ offset: -6, span: 6 }">
+          <a-input-number
+            placeholder="0~10"
+            size="large"
+            min="0"
+            max="10"
+            :controls="false"
+            v-model:value="thisScore.defScore3" />
         </a-form-item>
 
         <a-form-item label="答辩情况" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
+            placeholder="0~10"
             size="large"
             min="0"
             max="10"
@@ -401,7 +428,7 @@ const onSubmit = async () => {
   </div>
 
   <div v-if="thisScore.finalEva !== null" class="steps-content">
-    <a-result status="success" title="该学生评分工作已完成"> </a-result>
+    <a-result status="success" title="该学生评分工作已完成"></a-result>
   </div>
 </template>
 
