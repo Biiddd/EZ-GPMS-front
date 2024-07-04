@@ -78,8 +78,7 @@ http.post('/stu/getScore', { user_id: user_id }).then((res) => {
 
 const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
-const tempFinalEva = ref<string>();
-
+const tempFinalEva = ref<string | null>(null);
 
 const confirmText = ref<string>('成绩提交后无法修改, 是否确认提交?');
 const confirmLoading = ref<boolean>(false);
@@ -155,7 +154,7 @@ const onSubmit = async () => {
       });
       console.log('提交成绩成功：', response);
       isShowConfirmDialog.value = false;
-      message.success('提交成绩成功')
+      message.success('提交成绩成功');
     } catch (error) {
       console.error('提交成绩失败：', error);
     }
@@ -401,12 +400,8 @@ const onSubmit = async () => {
     </a-form>
   </div>
 
-  <div v-else class="steps-content">
-    <a-result
-      status="success"
-      title="该学生评分工作已完成"
-    >
-    </a-result>
+  <div v-if="thisScore.finalEva !== null" class="steps-content">
+    <a-result status="success" title="该学生评分工作已完成"> </a-result>
   </div>
 </template>
 
