@@ -58,6 +58,13 @@ const openKeys = ref<string[]>(['sub1']);
               </router-link>
             </a-menu-item>
 
+            <a-menu-item key="6">
+              <router-link to="/groupSituation">
+                <laptop-outlined />
+                分组情况
+              </router-link>
+            </a-menu-item>
+
             <a-sub-menu key="sub1">
               <template #title>
                 <span>

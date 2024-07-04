@@ -48,6 +48,11 @@ const routes = [
         name: "askUpload",
         component: () => import("@/views/askUpload.vue"),
       },
+              {
+        path: "/groupSituation",
+        name: "groupSituation",
+        component: () => import("@/views/groupSituation.vue"),
+      },
       {
         path: "/signScore",
         name: "signScore",
