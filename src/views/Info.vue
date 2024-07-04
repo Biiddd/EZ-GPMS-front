@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { RegionText } from 'v-region';
+import { thisFullUserInfo } from '@/utils/UserInfo';
 import http from '@/utils/http';
 
 const labelCol = { style: { width: '150px' } };
@@ -8,63 +9,13 @@ const wrapperCol = { span: 14 };
 
 const user_id = 222222222222;
 
-interface RegionInputModel {
-  province: string;
-  city: string;
-  area: string;
-  town: string;
-}
-
-const region = ref<RegionInputModel>({
-  province: '',
-  city: '',
-  area: '',
-  town: ''
+http.post('/getFullInfo', { user_id: user_id }).then((res) => {
+  thisFullUserInfo.value = res.data;
 });
 
-interface UserInfo {
-  id: string;
-  name: string;
-  age: string | number;
-  gender: string;
-  type: string;
-  tel: string;
-  email: string;
-  detailAdd: string;
-}
-
-const thisUserInfo = ref<UserInfo>({
-  id: '',
-  name: '',
-  age: '',
-  gender: '',
-  type: '',
-  tel: '',
-  email: '',
-  detailAdd: ''
-});
-
-http.post('/getInfo', { user_id: user_id }).then((res) => {
-  thisUserInfo.value = {
-    id: res.data.user_id,
-    name: res.data.name,
-    age: res.data.age,
-    gender: res.data.gender,
-    type: res.data.type,
-    tel: res.data.tel,
-    email: res.data.email,
-    detailAdd: res.data.detailAdd
-  };
-
-  region.value = {
-    province: res.data.province,
-    city: res.data.city,
-    area: res.data.area,
-    town: res.data.town
-  };
-});
-
-const isRegionReady = computed(() => Object.values(region.value).some((value) => value !== ''));
+const isRegionReady = computed(() =>
+  Object.values(thisFullUserInfo.value.region).some((value) => value !== '')
+);
 </script>
 
 <template>
@@ -74,29 +25,29 @@ const isRegionReady = computed(() => Object.values(region.value).some((value) =>
     layout="horizontal"
     style="max-width: 600px">
     <a-form-item label="姓名">
-      {{ thisUserInfo.name }}
+      {{ thisFullUserInfo.name }}
     </a-form-item>
     <a-form-item label="年龄">
-      {{ thisUserInfo.age }}
+      {{ thisFullUserInfo.age }}
     </a-form-item>
     <a-form-item label="性别">
-      {{ thisUserInfo.gender }}
+      {{ thisFullUserInfo.gender }}
     </a-form-item>
     <a-form-item label="用户类型">
-      {{ thisUserInfo.type }}
+      {{ thisFullUserInfo.type }}
     </a-form-item>
     <a-form-item label="学工号">
-      {{ thisUserInfo.id }}
+      {{ thisFullUserInfo.user_id }}
     </a-form-item>
     <a-form-item label="联系方式">
-      {{ thisUserInfo.tel }}
+      {{ thisFullUserInfo.tel }}
     </a-form-item>
     <a-form-item label="邮箱地址">
-      {{ thisUserInfo.email }}
+      {{ thisFullUserInfo.email }}
     </a-form-item>
     <a-form-item label="联系地址" v-if="isRegionReady">
-      <RegionText v-model="region" />
-      {{ thisUserInfo.detailAdd }}
+      <RegionText v-model="thisFullUserInfo.region" />
+      {{ thisFullUserInfo.detailAdd }}
     </a-form-item>
   </a-form>
 </template>
