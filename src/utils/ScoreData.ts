@@ -1,3 +1,5 @@
+import { ref } from 'vue';
+
 export interface ScoreData {
   id: string;
 
@@ -51,3 +53,56 @@ export interface ScoreData {
   finalScore: number | null;
   finalEva: string | null;
 }
+
+export const thisScore = ref<ScoreData>({
+  id: '111111111111',
+  // 开题报告
+  startScore1: null,
+  startScore2: null,
+  startScore3: null,
+  startScore: null,
+  startEva: '',
+
+  // 外文翻译
+  transScore1: null,
+  transScore2: null,
+  transScore3: null,
+  transScore: null,
+  transEva: '',
+
+  // 中期检查
+  midScore1: null,
+  midScore2: null,
+  midScore3: null,
+  midScore: null,
+  midEva: '',
+
+  // 指导老师
+  teachScore1: null,
+  teachScore2: null,
+  teachScore3: null,
+  teachScore4: null,
+  teachScore5: null,
+  teachScore: null,
+  teachEva: '',
+
+  // 评阅老师
+  readScore1: null,
+  readScore2: null,
+  readScore3: null,
+  readScore4: null,
+  readScore: null,
+  readEva: '',
+
+  // 答辩小组
+  defScore1: null,
+  defScore2: null,
+  defScore3: null,
+  defScore4: null,
+  defScore: null,
+  defEva: '',
+
+  // 委员会总评
+  finalScore: null,
+  finalEva: '',
+});

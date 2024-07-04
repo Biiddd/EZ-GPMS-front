@@ -1,17 +1,15 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 const labelCol = { style: { width: '300px' } };
 const wrapperCol = { span: 14 };
 
 import http from '@/http';
-import { ScoreData } from '@/utils/ScoreData';
+import { thisScore } from '@/utils/ScoreData';
 
 const user_id = 111111111111; // dev阶段手动设置
 
 const current = ref<number>();
-
-const thisScore = ref<ScoreData>();
 
 const steps = [
   {
@@ -72,7 +70,6 @@ function setState() {
 http.post('/stu/getScore', { user_id: user_id }).then((res) => {
   thisScore.value = res.data;
   console.log('成绩：', thisScore.value);
-
   setState();
 });
 
