@@ -103,7 +103,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="1"
             :controls="false"
             v-model:value="thisScore.transScore1" />
         </a-form-item>
@@ -111,7 +111,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="1"
             :controls="false"
             v-model:value="thisScore.transScore2" />
         </a-form-item>
@@ -119,7 +119,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="1"
             :controls="false"
             v-model:value="thisScore.transScore3" />
         </a-form-item>
@@ -131,7 +131,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="4"
             :controls="false"
             v-model:value="thisScore.startScore1" />
         </a-form-item>
@@ -139,7 +139,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="4"
             :controls="false"
             v-model:value="thisScore.startScore2" />
         </a-form-item>
@@ -147,7 +147,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="4"
             :controls="false"
             v-model:value="thisScore.startScore3" />
         </a-form-item>
@@ -184,13 +184,13 @@ const onSubmit = async () => {
         </a-form-item>
       </div>
 
-      <!--      终稿打分表单      -->
+      <!--      指导老师评语建议打分表单      -->
       <div v-if="current === 3">
         <a-form-item label="设计能力" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="3"
             :controls="false"
             v-model:value="thisScore.teachScore1" />
         </a-form-item>
@@ -198,7 +198,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="3"
             :controls="false"
             v-model:value="thisScore.teachScore2" />
         </a-form-item>
@@ -206,7 +206,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="3"
             :controls="false"
             v-model:value="thisScore.teachScore3" />
         </a-form-item>
@@ -214,7 +214,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="3"
             :controls="false"
             v-model:value="thisScore.teachScore4" />
         </a-form-item>
@@ -222,7 +222,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="3"
             :controls="false"
             v-model:value="thisScore.teachScore5" />
         </a-form-item>
@@ -237,7 +237,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="4"
             :controls="false"
             v-model:value="thisScore.readScore1" />
         </a-form-item>
@@ -245,7 +245,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="4"
             :controls="false"
             v-model:value="thisScore.readScore2" />
         </a-form-item>
@@ -253,7 +253,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="4"
             :controls="false"
             v-model:value="thisScore.readScore3" />
         </a-form-item>
@@ -261,7 +261,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="3"
             :controls="false"
             v-model:value="thisScore.readScore4" />
         </a-form-item>
@@ -276,7 +276,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="10"
             :controls="false"
             v-model:value="thisScore.defScore1" />
         </a-form-item>
@@ -284,7 +284,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="10"
             :controls="false"
             v-model:value="thisScore.defScore2" />
         </a-form-item>
@@ -296,7 +296,7 @@ const onSubmit = async () => {
           <a-input-number
             size="large"
             min="0"
-            max="5"
+            max="10"
             :controls="false"
             v-model:value="thisScore.defScore4" />
         </a-form-item>
