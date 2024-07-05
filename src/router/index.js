@@ -7,6 +7,10 @@ import Login from '@/views/Login.vue';
 const routes = [
   {
     path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
     name: 'login',
     component: Login
   },
@@ -64,9 +68,14 @@ const routes = [
     ]
   },
   {
-    path: '/teacherHome',
-    name: 'teacherHome',
-    component: () => import('@/views/TeacherHome.vue')
+    path: '/403',
+    name: '403',
+    component: () => import('@/views/common/403.vue')
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/common/404.vue')
   }
 ];
 
