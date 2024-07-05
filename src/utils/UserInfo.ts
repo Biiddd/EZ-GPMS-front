@@ -14,13 +14,12 @@ export interface FullUserInfo {
   user_pic: string;
 }
 
-
 export interface EditUserInfo {
   user_id: string;
   tel: string | null;
   email: string | null;
   region: RegionInputModel;
-  detailAdd: string |null;
+  detailAdd: string | null;
 }
 
 export const thisFullUserInfo = ref<FullUserInfo>({
@@ -31,7 +30,7 @@ export const thisFullUserInfo = ref<FullUserInfo>({
   type: '',
   tel: '',
   email: '',
-  region:{
+  region: {
     province: '',
     city: '',
     area: '',
@@ -42,7 +41,7 @@ export const thisFullUserInfo = ref<FullUserInfo>({
 });
 
 export const thisEditUserInfo = ref<EditUserInfo>({
-  user_id: '1111111111111',
+  user_id: '',
   tel: '',
   email: '',
   region: <RegionInputModel>{
