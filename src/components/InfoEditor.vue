@@ -1,19 +1,39 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import { RegionSelects } from 'v-region';
 import http from '@/utils/http';
-import { EditUserInfo, thisEditUserInfo } from '@/utils/UserInfo';
+import { thisEditUserInfo } from '@/utils/UserInfo';
+import { message } from 'ant-design-vue';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
 
 const user_id = '111111111111'; // dev阶段手动设置
-ref<EditUserInfo>();
+const emailRegex: RegExp = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+const telRegex: RegExp = /^(13[0-9]|14[5-9]|15[0-3,5-9]|16[6]|17[0-8]|18[0-9]|19[8,9])\d{8}$/;
+
+function validFormData(): boolean {
+  if (!emailRegex.test(thisEditUserInfo.value.email)) {
+    message.error('请输入正确的邮箱地址');
+    return false;
+  }
+  if (!telRegex.test(thisEditUserInfo.value.tel)) {
+    message.error('请输入正确的手机号码');
+    return false;
+  }
+  return true;
+}
+
 const onSubmitClick = async () => {
-  try {
-    await http.put('/updateInfo', thisEditUserInfo.value);
-  } catch (error) {
-    console.log(error);
+  if (validFormData()) {
+    try {
+      await http.put('/updateInfo', thisEditUserInfo.value);
+      message.success('修改成功');
+    } catch (error) {
+      message.error('未知错误, 请重试');
+    }
+  } else {
+    message.error('未知错误, 请重试');
   }
 };
 
