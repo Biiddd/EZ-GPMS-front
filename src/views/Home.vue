@@ -65,6 +65,47 @@ const openKeys = ref<string[]>(['sub1']);
               </router-link>
             </a-menu-item>
 
+            <a-sub-menu key="sub2">
+              <template #title>
+                <span>
+                  <notification-outlined />
+                  学生
+                </span>
+              </template>
+
+              <a-menu-item key="11">
+                <router-link to="/stuInfo">
+                  <user-outlined />
+                  学生基本信息
+                </router-link>
+              </a-menu-item>
+
+              <a-menu-item key="12">
+                <router-link to="/showStu">
+                  <FormOutlined />
+                  学生成绩汇总
+                </router-link>
+              </a-menu-item>
+            </a-sub-menu>
+
+
+            <a-sub-menu key="sub3">
+              <template #title>
+                <span>
+                  <notification-outlined />
+                  教师
+                </span>
+              </template>
+
+              <a-menu-item key="31">
+                <router-link to="/teacherInfo">
+                  <user-outlined />
+                  教师基本信息
+                </router-link>
+              </a-menu-item>
+            </a-sub-menu>
+
+
             <a-sub-menu key="sub1">
               <template #title>
                 <span>

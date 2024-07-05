@@ -7,7 +7,7 @@ import http from '@/utils/http';
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
 
-const user_id = 222222222222;
+const user_id = 202422222222;
 
 http.post('/getFullInfo', { user_id: user_id }).then((res) => {
   thisFullUserInfo.value = res.data;
