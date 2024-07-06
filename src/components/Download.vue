@@ -8,20 +8,32 @@ const props = defineProps({
   fileType: String
 });
 
+let filePath: string = '';
+let response: any;
+
 const handleDownload = async () => {
   try {
     console.log('用户ID:', props.userId);
     console.log('文件名:', props.fileName);
-    const response = await http.get('/getFilePath', {
-      params: {
-        user_id: props.userId,
-        file: props.fileName
-      }
-    });
-
-    const filePath = response.data.path;
+    if (!props.userId) {
+      response = await http.get('/stu/getFilePath', {
+        params: {
+          file: props.fileName
+        }
+      });
+    } else {
+      response = await http.get('/teacher/getFilePath', {
+        params: {
+          user_id: props.userId,
+          file: props.fileName
+        }
+      });
+    }
+    console.log('获取文件路径:', response.data);
+    filePath = response.data.path;
     console.log('文件路径:', filePath);
-    const serverBaseUrl = 'http://127.0.0.1:3333';
+    // const serverBaseUrl = 'http://127.0.0.1:3333';
+    const serverBaseUrl = 'http://192.168.124.36:3333';
     const fullFilePath = `${serverBaseUrl}/${filePath}`;
     console.log('完整文件路径:', fullFilePath);
     const link = document.createElement('a');
