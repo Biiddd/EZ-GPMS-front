@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { getUserInfo } from '@/utils/auth';
 
 export interface ScoreData {
   id: string;
@@ -55,7 +56,7 @@ export interface ScoreData {
 }
 
 export const thisScore = ref<ScoreData>({
-  id: '111111111111',
+  id: getUserInfo().user_id,
   // 开题报告
   startScore1: null,
   startScore2: null,
@@ -104,5 +105,5 @@ export const thisScore = ref<ScoreData>({
 
   // 委员会总评
   finalScore: null,
-  finalEva: '',
+  finalEva: ''
 });

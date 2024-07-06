@@ -7,8 +7,8 @@ import Upload_Defense from '../../components/UploadDefApply.vue';
 import WaitingOpeningDefense from '../../components/WaitStartDef.vue';
 import ShowFinalScore from '../../components/ShowFinalScore.vue';
 import http from '@/utils/http';
-
-const user_id = 111111111111; // dev阶段手动设置
+import { message } from 'ant-design-vue';
+import { getUserInfo } from '@/utils/auth';
 
 const current = ref<number>();
 
@@ -45,11 +45,10 @@ defineExpose({ current, items });
 
 onMounted(async () => {
   try {
-    const response = await http.post('/stu/getState', { user_id: user_id });
-    current.value = Number(response.data.stu_states);
-    console.log('当前步骤：', current.value);
-    current.value = 4;
+    const response = await http.post('/stu/getState', { user_id: getUserInfo().user_id });
+    current.value = response.data.stu_states;
   } catch (error) {
+    message.error('未知错误, 请重试');
     console.error('获取当前步骤失败:', error);
   }
 });

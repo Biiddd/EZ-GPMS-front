@@ -4,11 +4,11 @@ import { RegionSelects } from 'v-region';
 import http from '@/utils/http';
 import { thisEditUserInfo } from '@/utils/UserInfo';
 import { message } from 'ant-design-vue';
+import { getUserInfo } from '@/utils/auth';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
 
-const user_id = '111111111111'; // dev阶段手动设置
 const emailRegex: RegExp = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 const telRegex: RegExp = /^(13[0-9]|14[5-9]|15[0-3,5-9]|16[6]|17[0-8]|18[0-9]|19[8,9])\d{8}$/;
 
@@ -32,13 +32,11 @@ const onSubmitClick = async () => {
     } catch (error) {
       message.error('未知错误, 请重试');
     }
-  } else {
-    message.error('未知错误, 请重试');
   }
 };
 
 onMounted(() => {
-  http.post('/getEditInfo', { user_id: user_id }).then((res) => {
+  http.post('/getEditInfo', { user_id: getUserInfo().user_id }).then((res) => {
     thisEditUserInfo.value = res.data;
   });
 });

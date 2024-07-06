@@ -2,11 +2,11 @@
 import { computed, reactive, ref } from 'vue';
 import { message } from 'ant-design-vue';
 import http from '@/utils/http';
+import { getUserInfo } from '@/utils/auth';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
 
-const user_id = 111111111111;
 const oldPasswd: string = '1234'; // 测试假设旧密码是 1234
 // const oldPasswd = ref<string>("");
 
@@ -95,7 +95,7 @@ const onFinish = async () => {
   ) {
     try {
       const response = await http.post('/changePasswd', {
-        user_id: user_id,
+        user_id: getUserInfo().user_id,
         newPasswd: formState.newPasswd
       });
 

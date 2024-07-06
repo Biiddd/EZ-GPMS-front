@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
+import { getUserInfo } from '@/utils/auth';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
@@ -55,7 +56,7 @@ const uploadReport = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadOutApply"
-        :data="{ stu_id: '111111111111', filename: '校外毕设申请' }"
+        :data="{ stu_id: getUserInfo().user_id, filename: '校外毕设申请' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="outApply.length < 1">
           <upload-outlined />
@@ -70,7 +71,7 @@ const uploadReport = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadTrans"
-        :data="{ stu_id: '111111111111', filename: '外文翻译' }"
+        :data="{ stu_id: getUserInfo().user_id, filename: '外文翻译' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="trans.length < 1">
           <upload-outlined />
@@ -85,7 +86,7 @@ const uploadReport = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadReport"
-        :data="{ stu_id: '111111111111', filename: '开题报告' }"
+        :data="{ stu_id: getUserInfo().user_id, filename: '开题报告' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="startReport.length < 1">
           <upload-outlined />

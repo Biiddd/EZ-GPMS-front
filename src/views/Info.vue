@@ -3,13 +3,12 @@ import { computed } from 'vue';
 import { RegionText } from 'v-region';
 import { thisFullUserInfo } from '@/utils/UserInfo';
 import http from '@/utils/http';
+import { getUserInfo } from '@/utils/auth';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
 
-const user_id = 202422222222;
-
-http.post('/getFullInfo', { user_id: user_id }).then((res) => {
+http.post('/getFullInfo', { user_id: getUserInfo().user_id }).then((res) => {
   thisFullUserInfo.value = res.data;
 });
 

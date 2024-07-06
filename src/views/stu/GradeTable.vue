@@ -6,8 +6,7 @@
 import { ref, onMounted } from 'vue';
 import http from '@/utils/http';
 import { ScoreData } from '@/utils/ScoreData';
-
-const user_id = 111111111111; // dev阶段手动设置
+import { getUserInfo } from '@/utils/auth';
 
 const columns = ref([
   {
@@ -33,7 +32,7 @@ const scoreData = ref<ScoreData>();
 
 onMounted(async () => {
   try {
-    const response = await http.post('/stu/getScore', { user_id: user_id });
+    const response = await http.post('/stu/getScore', { user_id: getUserInfo().user_id });
     scoreData.value = response.data;
 
     dataSource.value = [

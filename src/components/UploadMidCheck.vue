@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
+import { getUserInfo } from '@/utils/auth';
 
 const midWork = ref([]);
 const midReport = ref([]);
@@ -38,7 +39,7 @@ const uploadMidReport = (info: any) => {
         list-type="picture"
         accept=".zip"
         @change="uploadMidWork"
-        :data="{ stu_id: '111111111111', filename: '中期成果' }"
+        :data="{ stu_id: getUserInfo().user_id, filename: '中期成果' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="midWork.length < 1">
           <upload-outlined />
@@ -52,7 +53,7 @@ const uploadMidReport = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadMidReport"
-        :data="{ stu_id: '111111111111', filename: '中期报告' }"
+        :data="{ stu_id: getUserInfo().user_id, filename: '中期报告' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="midReport.length < 1">
           <upload-outlined />
