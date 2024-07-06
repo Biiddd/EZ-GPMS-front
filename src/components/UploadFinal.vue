@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
+import { beforeUploadPDF } from '@/utils/uploadValid';
 import { getUserInfo } from '@/utils/auth';
 
 const labelCol = { style: { width: '150px' } };
@@ -30,6 +31,7 @@ const uploadDraft = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadDraft"
+        :before-upload="beforeUploadPDF"
         :data="{ stu_id: getUserInfo().user_id, filename: '毕业论文终稿' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="Draft.length < 1">

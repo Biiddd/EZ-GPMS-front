@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
-import { message } from 'ant-design-vue';
+import { message, Upload } from 'ant-design-vue';
 import { getUserInfo } from '@/utils/auth';
+import { beforeUploadPDF, beforeUploadZip } from '@/utils/uploadValid';
 
 const midWork = ref([]);
 const midReport = ref([]);
@@ -38,6 +39,7 @@ const uploadMidReport = (info: any) => {
         v-model:file-list="midWork"
         list-type="picture"
         accept=".zip"
+        :before-upload="beforeUploadZip"
         @change="uploadMidWork"
         :data="{ stu_id: getUserInfo().user_id, filename: '中期成果' }"
         action="http://127.0.0.1:5174/api/upload">
@@ -52,6 +54,7 @@ const uploadMidReport = (info: any) => {
         v-model:file-list="midReport"
         list-type="picture"
         accept=".pdf"
+        :before-upload="beforeUploadPDF"
         @change="uploadMidReport"
         :data="{ stu_id: getUserInfo().user_id, filename: '中期报告' }"
         action="http://127.0.0.1:5174/api/upload">

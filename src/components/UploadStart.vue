@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { getUserInfo } from '@/utils/auth';
+import { beforeUploadPDF } from '@/utils/uploadValid';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
@@ -56,6 +57,7 @@ const uploadReport = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadOutApply"
+        :before-upload="beforeUploadPDF"
         :data="{ stu_id: getUserInfo().user_id, filename: '校外毕设申请' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="outApply.length < 1">
@@ -71,6 +73,7 @@ const uploadReport = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadTrans"
+        :before-upload="beforeUploadPDF"
         :data="{ stu_id: getUserInfo().user_id, filename: '外文翻译' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="trans.length < 1">
@@ -86,6 +89,7 @@ const uploadReport = (info: any) => {
         list-type="picture"
         accept=".pdf"
         @change="uploadReport"
+        :before-upload="beforeUploadPDF"
         :data="{ stu_id: getUserInfo().user_id, filename: '开题报告' }"
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="startReport.length < 1">

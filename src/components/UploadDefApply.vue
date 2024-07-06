@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
-import { message } from 'ant-design-vue';
+import { message, Upload } from 'ant-design-vue';
 import { getUserInfo } from '@/utils/auth';
+import { beforeUploadPDF } from '@/utils/uploadValid';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
@@ -29,6 +30,7 @@ const uploadDefApply = (info: any) => {
         v-model:file-list="defApply"
         list-type="picture"
         accept=".pdf"
+        :before-upload="beforeUploadPDF"
         @change="uploadDefApply"
         :data="{ stu_id: getUserInfo().user_id, filename: '答辩申请表' }"
         action="http://127.0.0.1:5174/api/upload">
