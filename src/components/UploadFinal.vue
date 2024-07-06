@@ -4,6 +4,7 @@ import { UploadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { beforeUploadPDF } from '@/utils/uploadValid';
 import { getUserInfo } from '@/utils/auth';
+import Download from '@/components/Download.vue';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
@@ -24,7 +25,13 @@ const uploadDraft = (info: any) => {
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
     layout="horizontal"
-    style="max-width: 600px">
+    style="max-width: 600px"
+    ><a-form-item :wrapper-col="{ offset: 14, span: 16 }">
+      <Download
+        :button_text="'下载毕业论文模板'"
+        file-name="毕业论文模板"
+        file-type="doc"></Download>
+    </a-form-item>
     <a-form-item :wrapper-col="{ offset: 14, span: 16 }">
       <a-upload
         v-model:file-list="Draft"
@@ -33,7 +40,7 @@ const uploadDraft = (info: any) => {
         @change="uploadDraft"
         :before-upload="beforeUploadPDF"
         :data="{ stu_id: getUserInfo().user_id, filename: '毕业论文终稿' }"
-        action="http://127.0.0.1:5174/api/upload">
+        action="http://127.0.0.1:5174/api/uploadD">
         <a-button size="large" v-if="Draft.length < 1">
           <upload-outlined />
           选择终稿

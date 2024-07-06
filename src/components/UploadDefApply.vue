@@ -4,6 +4,7 @@ import { UploadOutlined } from '@ant-design/icons-vue';
 import { message, Upload } from 'ant-design-vue';
 import { getUserInfo } from '@/utils/auth';
 import { beforeUploadPDF } from '@/utils/uploadValid';
+import Download from '@/components/Download.vue';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
@@ -25,6 +26,9 @@ const uploadDefApply = (info: any) => {
     :wrapper-col="wrapperCol"
     layout="horizontal"
     style="max-width: 600px">
+    <a-form-item :wrapper-col="{ offset: 14, span: 16 }">
+      <Download button_text="下载答辩申请表模板" file-name="答辩申请模板" file-type="docx" />
+    </a-form-item>
     <a-form-item :wrapper-col="{ offset: 14, span: 16 }">
       <a-upload
         v-model:file-list="defApply"

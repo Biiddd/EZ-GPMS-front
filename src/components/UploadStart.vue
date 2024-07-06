@@ -4,6 +4,7 @@ import { UploadOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
 import { getUserInfo } from '@/utils/auth';
 import { beforeUploadPDF } from '@/utils/uploadValid';
+import Download from '@/components/Download.vue';
 
 const labelCol = { style: { width: '150px' } };
 const wrapperCol = { span: 14 };
@@ -44,6 +45,21 @@ const uploadReport = (info: any) => {
     :wrapper-col="wrapperCol"
     layout="horizontal"
     style="max-width: 600px">
+    <a-form-item :wrapper-col="{ offset: 14, span: 24 }">
+      <Download
+        button_text="下载校外毕设申请表"
+        :stu_id="getUserInfo().user_id"
+        file-name="校外毕设申请表"
+        file-type="docx"></Download>
+    </a-form-item>
+    <a-form-item :wrapper-col="{ offset: 14, span: 24 }">
+      <Download
+        button_text="下载开题报告模板"
+        :stu_id="getUserInfo().user_id"
+        file-name="开题报告模板"
+        file-type="docx"></Download>
+    </a-form-item>
+
     <!--    勾选是否校外毕设-->
     <a-form-item :wrapper-col="{ offset: 14, span: 24 }">
       <a-checkbox v-model:checked="isOutSchool" style="font-weight: bold"
