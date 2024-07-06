@@ -1,60 +1,62 @@
 <script setup>
 import { reactive, onMounted } from 'vue';
-// import { updateUserState } from "@/auth.js";
+import { updateUserState } from '@/utils/auth.ts';
 import router from '@/router/index.js';
 import http from '@/utils/http';
+import { message } from 'ant-design-vue';
 
 const formState = reactive({
-  username: '',
-  password: '',
+  userID: null,
+  passwd: null,
   remember: true
 });
 
 // 在组件加载时，从本地存储中读取用户名和密码
 onMounted(() => {
-  const storedUsername = localStorage.getItem('rememberedUsername');
-  const storedPassword = localStorage.getItem('rememberedPassword');
+  const storedUsername = localStorage.getItem('rememberedUserID');
+  const storedPassword = localStorage.getItem('rememberedPasswd');
 
-  // 如果存储中有数据，填充到表单中，并设置“记住我”选项为true
-  if (storedUsername && storedPassword) {
-    formState.username = storedUsername;
-    formState.password = storedPassword;
-    formState.remember = true;
-  }
+  //   // 如果存储中有数据，填充到表单中，并设置“记住我”选项为true
+  //   if (storedUsername && storedPassword) {
+  //     formState.userID = storedUsername;
+  //     formState.passwd = storedPassword;
+  //     formState.remember = true;
+  //   }
 });
 
-const onFinish = async () => {
-  try {
-    const response = await http.post('/login', formState);
+const onSubmit = async () => {
+  const response = await http.post('/login', {
+    user_id: formState.userID,
+    password: formState.passwd
+  });
 
-    if (response.data.success) {
-      //登录成功，获取服务器返回的用户信息
-      const userInfo = formState.username;
-      // 更新用户状态
-      updateUserState(true, userInfo);
+  console.log(response.data);
+  if (response.data.code === 20001 || response.data.code === 20002) {
+    message.success('登录成功');
+    //登录成功，获取服务器返回的用户信息
+    sessionStorage.setItem('user_id', formState.userID);
+    sessionStorage.setItem('user_type', response.data.data.type);
 
-      // 如果选择了“记住我”，将用户名和密码存储到本地存储中
-      if (formState.remember) {
-        localStorage.setItem('rememberedUsername', formState.username);
-        localStorage.setItem('rememberedPassword', formState.password);
-        localStorage.setItem('isLoggedIn', true);
-      } else {
-        // 如果没有选择“记住我”，清除本地存储中的用户名和密码
-        localStorage.removeItem('rememberedUsername');
-        localStorage.removeItem('rememberedPassword');
-      }
-      // 跳转到首页
-      await router.push({ name: 'Home' });
+    // 更新用户状态
+    updateUserState(true, formState.userID, response.data.data.type);
+
+    // 如果选择了“记住我”，将用户名和密码存储到本地存储中
+    if (formState.remember) {
+      localStorage.setItem('rememberedUserID', formState.userID);
+      localStorage.setItem('rememberedPasswd', formState.passwd);
+      localStorage.setItem('isLoggedIn', true);
     } else {
-      // 账号密码错误，弹出错误信息
-      alert(response.data.message || '用户名或密码错误');
+      // 如果没有选择“记住我”，清除本地存储中的用户名和密码
+      localStorage.removeItem('rememberedUserID');
+      localStorage.removeItem('rememberedPasswd');
     }
-  } catch (error) {
-    alert('登录失败，请稍后再试');
+    // 跳转到首页
+    await router.push({ name: 'overview' });
+  } else {
+    // 账号密码错误，弹出错误信息
+    alert(response.data.message || '用户名或密码错误');
   }
 };
-
-const onFinishFailed = (errorInfo) => {};
 </script>
 
 <template>
@@ -69,22 +71,13 @@ const onFinishFailed = (errorInfo) => {};
           name="basic"
           :label-col="{ span: 8 }"
           :wrapper-col="{ span: 10 }"
-          autocomplete="off"
-          @finish="onFinish"
-          @finishFailed="onFinishFailed">
-          <a-form-item
-            class="custom-label"
-            label="用户名"
-            name="username"
-            :rules="[{ required: true, message: '请输入用户名!' }]">
-            <a-input v-model:value="formState.username" />
+          autocomplete="off">
+          <a-form-item class="custom-label" label="用户名" name="username">
+            <a-input v-model:value="formState.userID" />
           </a-form-item>
 
-          <a-form-item
-            label="密码"
-            name="password"
-            :rules="[{ required: true, message: '请输入密码!' }]">
-            <a-input-password v-model:value="formState.password" />
+          <a-form-item label="密码" name="password">
+            <a-input-password v-model:value="formState.passwd" />
           </a-form-item>
 
           <a-form-item name="remember" :wrapper-col="{ offset: 10, span: 16 }">
@@ -93,7 +86,7 @@ const onFinishFailed = (errorInfo) => {};
 
           <a-form-item :wrapper-col="{ offset: 10, span: 16 }">
             <div class="item-btn">
-              <a-button type="primary" html-type="submit">登录</a-button>
+              <a-button type="primary" @click="onSubmit">登录</a-button>
             </div>
           </a-form-item>
         </a-form>

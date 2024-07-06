@@ -7,6 +7,7 @@ import {
   LockOutlined,
   FormOutlined
 } from '@ant-design/icons-vue';
+import { getUserInfo } from '@/utils/auth';
 
 const selectedKeys2 = ref<string[]>(['1']);
 const openKeys = ref<string[]>(['sub1']);
@@ -25,47 +26,64 @@ const openKeys = ref<string[]>(['sub1']);
             v-model:openKeys="openKeys"
             mode="inline"
             style="height: 100%">
-            <a-menu-item key="1">
+            <a-menu-item key="0">
               <user-outlined />
-              <router-link to="/process"> 进度</router-link>
+              <router-link to="/overview">概览</router-link>
             </a-menu-item>
 
-            <a-menu-item key="2">
+            <a-menu-item key="1" v-if="getUserInfo().user_type === '学生'">
+              <user-outlined />
+              <router-link to="/process">进度</router-link>
+            </a-menu-item>
+
+            <a-menu-item key="2" v-if="getUserInfo().user_type === '学生'">
               <router-link to="/grade">
                 <laptop-outlined />
                 成绩
               </router-link>
             </a-menu-item>
 
-            <a-menu-item key="3">
+            <a-menu-item
+              key="3"
+              v-if="
+                getUserInfo().user_type === '指导教师' ||
+                getUserInfo().user_type === '小组秘书兼评阅教师' ||
+                getUserInfo().user_type === '组长'
+              ">
               <router-link to="/showStu">
                 <laptop-outlined />
                 学生列表
               </router-link>
             </a-menu-item>
 
-            <a-menu-item key="4">
+            <a-menu-item
+              key="4"
+              v-if="
+                getUserInfo().user_type === '指导教师' ||
+                getUserInfo().user_type === '小组秘书兼评阅教师' ||
+                getUserInfo().user_type === '组长'
+              ">
               <router-link to="/signScore">
                 <laptop-outlined />
                 打分页面
               </router-link>
             </a-menu-item>
 
-            <a-menu-item key="5">
+            <a-menu-item key="5" v-if="getUserInfo().user_type === '指导教师'">
               <router-link to="/uploadRequire">
                 <laptop-outlined />
                 要求上传
               </router-link>
             </a-menu-item>
 
-            <a-menu-item key="6">
+            <a-menu-item key="6" v-if="getUserInfo().user_type === '管理员'">
               <router-link to="/groupArrange">
                 <laptop-outlined />
                 分组情况
               </router-link>
             </a-menu-item>
 
-            <a-sub-menu key="sub2">
+            <a-sub-menu key="sub2" v-if="getUserInfo().user_type === '管理员'">
               <template #title>
                 <span>
                   <notification-outlined />
@@ -88,8 +106,7 @@ const openKeys = ref<string[]>(['sub1']);
               </a-menu-item>
             </a-sub-menu>
 
-
-            <a-sub-menu key="sub3">
+            <a-sub-menu key="sub3" v-if="getUserInfo().user_type === '管理员'">
               <template #title>
                 <span>
                   <notification-outlined />
@@ -104,7 +121,6 @@ const openKeys = ref<string[]>(['sub1']);
                 </router-link>
               </a-menu-item>
             </a-sub-menu>
-
 
             <a-sub-menu key="sub1">
               <template #title>
