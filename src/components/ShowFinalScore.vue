@@ -3,7 +3,7 @@ import http from '@/utils/http';
 import { thisScore } from '@/utils/ScoreData';
 import { getUserInfo } from '@/utils/auth';
 
-http.post('/stu/getScore', { user_id: getUserInfo().user_id }).then((res) => {
+http.post('/stu/getScore', { stu_id: getUserInfo().user_id }).then((res) => {
   thisScore.value = res.data;
 });
 </script>
