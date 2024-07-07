@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import http from '@/utils/http';
+import { thisScore } from '@/utils/ScoreData';
+import { message } from 'ant-design-vue';
+import { useRoute } from 'vue-router';
 
 const labelCol = { style: { width: '300px' } };
 const wrapperCol = { span: 14 };
 
-import http from '@/utils/http';
-import { thisScore } from '@/utils/ScoreData';
-import { message } from 'ant-design-vue';
-
-const user_id = 111111111111; // dev阶段手动设置
-
+const route = useRoute();
+const stu_id = route.params.stu_id;
 const current = ref<number>();
 
 const steps = [
@@ -427,7 +427,7 @@ const onSubmit = async () => {
     </a-form>
   </div>
 
-  <div v-if="thisScore.finalEva !== null" class="steps-content">
+  <div v-if="thisScore.finalEva !== null && thisScore.finalEva !== ''" class="steps-content">
     <a-result status="success" title="该学生评分工作已完成"></a-result>
   </div>
 </template>
