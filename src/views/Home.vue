@@ -5,18 +5,45 @@ import {
   LaptopOutlined,
   NotificationOutlined,
   LockOutlined,
-  FormOutlined
+  FormOutlined,
 } from '@ant-design/icons-vue';
 import { getUserInfo } from '@/utils/auth';
-
+import { RouterLink } from 'vue-router';
+import { setLogout } from '@/utils/auth';
+import router from '@/router/index.js';
 const selectedKeys2 = ref<string[]>(['1']);
 const openKeys = ref<string[]>(['sub1']);
+const handleLogout = async () => {
+  setLogout(); // 调用退出登录函数
+
+  // 跳转到登录页面
+  await router.push({ name: 'login' });
+};
 </script>
 
 <template>
   <a-layout>
     <a-layout-header class="header">
       <div class="logo" />
+
+      <div class="header-right">
+        <a-dropdown>
+         <template #overlay>
+            <a-menu>
+              <a-menu-item key="profile">
+                <router-link to="/profile">个人中心</router-link>
+              </a-menu-item>
+              <a-menu-item key="logout" @click="handleLogout">
+                <router-link to="/logout">退出登录</router-link>
+              </a-menu-item>
+            </a-menu>
+          </template>
+          <a class="ant-dropdown-link" onclick="e => e.preventDefault()">
+            <a-avatar size="small" icon="UserOutlined" />
+          </a>
+        </a-dropdown>
+      </div>
+
     </a-layout-header>
     <a-layout-content style="padding: 0 50px">
       <a-layout style="padding: 24px 0; background: #fff">
@@ -165,6 +192,12 @@ const openKeys = ref<string[]>(['sub1']);
 </template>
 
 <style scoped>
+.header-right {
+  float: right;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
 #components-layout-demo-top-side .logo {
   float: left;
   width: 120px;

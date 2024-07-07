@@ -15,6 +15,10 @@ http.post('/getFullInfo', { user_id: getUserInfo().user_id }).then((res) => {
 const isRegionReady = computed(() =>
   Object.values(thisFullUserInfo.value.region).some((value) => value !== '')
 );
+
+function defaultAvatar(event) {
+  event.target.src = '/path_to_default_avatar.png'; // Fallback avatar
+}
 </script>
 
 <template>
@@ -22,7 +26,22 @@ const isRegionReady = computed(() =>
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
     layout="horizontal"
-    style="max-width: 600px">
+    style="max-width: 900px">
+
+     <!-- Avatar Section -->
+    <a-row gutter={16}> <!-- 添加间隙 -->
+      <!-- Avatar Column -->
+      <a-col span={6}> <!-- 列宽 -->
+    <a-form-item>
+      <a-space direction="vertical" align="center">
+        <a-avatar :size="100" src="path_to_image" @error="defaultAvatar">
+          <template #icon></template>
+        </a-avatar>
+      </a-space>
+    </a-form-item>
+      </a-col>
+
+      <a-col span={18}> <!-- 列宽 -->
     <a-form-item label="姓名">
       {{ thisFullUserInfo.name }}
     </a-form-item>
@@ -48,5 +67,7 @@ const isRegionReady = computed(() =>
       <RegionText v-model="thisFullUserInfo.region" />
       {{ thisFullUserInfo.detailAdd }}
     </a-form-item>
+      </a-col>
+    </a-row>
   </a-form>
 </template>
