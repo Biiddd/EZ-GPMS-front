@@ -5,18 +5,19 @@ import {
   LaptopOutlined,
   NotificationOutlined,
   LockOutlined,
-  FormOutlined,
+  FormOutlined
 } from '@ant-design/icons-vue';
 import { getUserInfo } from '@/utils/auth';
+
+const selectedKeys2 = ref<string[]>(['0']);
 import { RouterLink } from 'vue-router';
 import { setLogout } from '@/utils/auth';
-import router from '@/router/index.js';
-const selectedKeys2 = ref<string[]>(['1']);
-const openKeys = ref<string[]>(['sub1']);
-const handleLogout = async () => {
-  setLogout(); // 调用退出登录函数
+import router from '@/router';
 
-  // 跳转到登录页面
+const openKeys = ref<string[]>(['sub1']);
+
+const handleLogout = async () => {
+  setLogout();
   await router.push({ name: 'login' });
 };
 </script>
@@ -28,7 +29,7 @@ const handleLogout = async () => {
 
       <div class="header-right">
         <a-dropdown>
-         <template #overlay>
+          <template #overlay>
             <a-menu>
               <a-menu-item key="info">
                 <router-link to="/info">个人信息</router-link>
@@ -43,7 +44,6 @@ const handleLogout = async () => {
           </a>
         </a-dropdown>
       </div>
-
     </a-layout-header>
     <a-layout-content style="padding: 0 50px">
       <a-layout style="padding: 24px 0; background: #fff">
@@ -80,19 +80,6 @@ const handleLogout = async () => {
               <router-link to="/showStu">
                 <laptop-outlined />
                 学生列表
-              </router-link>
-            </a-menu-item>
-
-            <a-menu-item
-              key="4"
-              v-if="
-                getUserInfo().user_type === '指导教师' ||
-                getUserInfo().user_type === '小组秘书兼评阅教师' ||
-                getUserInfo().user_type === '组长'
-              ">
-              <router-link to="/signScore">
-                <laptop-outlined />
-                打分页面
               </router-link>
             </a-menu-item>
 
@@ -198,6 +185,7 @@ const handleLogout = async () => {
   align-items: center;
   height: 100%;
 }
+
 #components-layout-demo-top-side .logo {
   float: left;
   width: 120px;
