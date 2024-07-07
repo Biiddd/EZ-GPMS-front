@@ -3,6 +3,7 @@ import type { TableColumnsType } from 'ant-design-vue';
 import { onMounted, ref } from 'vue';
 import http from '@/utils/http';
 import { ScoreData } from '@/utils/ScoreData';
+import { getUserInfo } from '@/utils/auth';
 
 const columns: TableColumnsType = [
   {
@@ -27,7 +28,6 @@ const columns: TableColumnsType = [
     width: 100
   }
 ];
-const user_id = 111111111111; // dev阶段手动设置
 
 const dataSource = ref([]);
 
@@ -45,21 +45,19 @@ function formatEvaluation(eva: string | null | undefined): string {
 
 onMounted(async () => {
   try {
-    const response = await http.post('/teacher/getStuList', { user_id: user_id });
-    scoreData.value = response.data;
-    dataSource.value = [
-      {
-        stu_id: response.data.score_id,
-        name: response.data.name,
-        transScore: formatScore(scoreData.value.transScore),
-        startScore: formatScore(scoreData.value.startScore),
-        midScore: formatScore(scoreData.value.midScore),
-        teachScore: formatScore(scoreData.value.teachScore),
-        readScore: formatScore(scoreData.value.readScore),
-        defScore: formatScore(scoreData.value.defScore),
-        finalScore: formatScore(scoreData.value.finalScore)
-      }
-    ];
+    const response = await http.post('/teacher/getStuList', { user_id: getUserInfo().user_id });
+
+    dataSource.value = response.data.map((student: any) => ({
+      stu_id: student.stu_id,
+      name: student.name,
+      transScore: formatScore(student.transScore),
+      startScore: formatScore(student.startScore),
+      midScore: formatScore(student.midScore),
+      teachScore: formatScore(student.teachScore),
+      readScore: formatScore(student.readScore),
+      defScore: formatScore(student.defScore),
+      finalScore: formatScore(student.finalScore)
+    }));
   } catch (error) {
     console.error('获取评分数据失败:', error);
   }
@@ -67,10 +65,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <a-table :columns="columns" :data-source="dataSource" :scroll="{ x: 1500 }">
-    <template #bodyCell="{ column }">
+  <a-table :columns="columns" :data-source="dataSource" :pagination="false">
+    <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'operation'">
-        <router-link to="signScore">进入打分</router-link>
+        <router-link :to="`/signScore/${record.stu_id}`">进入打分</router-link>
+      </template>
+      <template v-else>
+        {{ record[column.dataIndex] }}
       </template>
     </template>
   </a-table>

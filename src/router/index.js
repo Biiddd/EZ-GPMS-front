@@ -102,7 +102,7 @@ const routes = [
         }
       },
       {
-        path: '/signScore',
+        path: '/signScore/:stu_id',
         name: 'signScore',
         component: SignScore,
         meta: {
