@@ -7,6 +7,11 @@ export interface FullUserInfo {
   age: string | number;
   gender: string;
   type: string;
+  class: string;
+  major: string;
+  title: string;
+  teacherGroup: number | null;
+  stuGroup: number | null;
   tel: string;
   email: string;
   region: RegionInputModel;
@@ -28,6 +33,11 @@ export const thisFullUserInfo = ref<FullUserInfo>({
   age: '',
   gender: '',
   type: '',
+  class: '',
+  major: '',
+  title: '',
+  teacherGroup: null,
+  stuGroup: null,
   tel: '',
   email: '',
   region: {

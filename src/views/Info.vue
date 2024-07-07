@@ -51,11 +51,26 @@ function defaultAvatar(event) {
     <a-form-item label="性别">
       {{ thisFullUserInfo.gender }}
     </a-form-item>
+    <a-form-item label="学工号">
+      {{ thisFullUserInfo.user_id }}
+    </a-form-item>
     <a-form-item label="用户类型">
       {{ thisFullUserInfo.type }}
     </a-form-item>
-    <a-form-item label="学工号">
-      {{ thisFullUserInfo.user_id }}
+    <a-form-item label="职称" v-if="thisFullUserInfo.type === '老师'">
+      {{ thisFullUserInfo.title }}
+    </a-form-item>
+    <a-form-item label="当前所在教师组" v-if="thisFullUserInfo.type === '老师'">
+      {{ thisFullUserInfo.teacherGroup }}
+    </a-form-item>
+    <a-form-item label="班级" v-if="thisFullUserInfo.type === '学生'">
+      {{ thisFullUserInfo.class }}
+    </a-form-item>
+    <a-form-item label="专业" v-if="thisFullUserInfo.type === '学生'">
+      {{ thisFullUserInfo.major }}
+    </a-form-item>
+    <a-form-item label="当前所在学生组" v-if="thisFullUserInfo.type === '学生'">
+      {{ thisFullUserInfo.stuGroup }}
     </a-form-item>
     <a-form-item label="联系方式">
       {{ thisFullUserInfo.tel }}
