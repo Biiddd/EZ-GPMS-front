@@ -13,19 +13,20 @@ const columns: TableColumnsType = [
     key: 'name',
     fixed: 'left'
   },
-  { title: '学号', width: 100, dataIndex: 'stu_id', key: '0', fixed: 'left' },
-  { title: '翻译成绩', dataIndex: 'transScore', key: '1', width: 150 },
-  { title: '开题成绩', dataIndex: 'startScore', key: '2', width: 150 },
-  { title: '中期成绩', dataIndex: 'midScore', key: '3', width: 150 },
-  { title: '终稿成绩', dataIndex: 'teachScore', key: '4', width: 150 },
-  { title: '评阅成绩', dataIndex: 'readScore', key: '5', width: 150 },
-  { title: '答辩成绩', dataIndex: 'defScore', key: '6', width: 150 },
-  { title: '总评成绩', dataIndex: 'finalScore', key: '7', width: 150 },
+  { title: '学号', width: 80, dataIndex: 'stu_id', key: '0', fixed: 'left' },
+  { title: '翻译成绩', dataIndex: 'transScore', key: '1', width: 100, align: 'center' },
+  { title: '开题成绩', dataIndex: 'startScore', key: '2', width: 100, align: 'center' },
+  { title: '中期成绩', dataIndex: 'midScore', key: '3', width: 100, align: 'center' },
+  { title: '终稿成绩', dataIndex: 'teachScore', key: '4', width: 100, align: 'center' },
+  { title: '评阅成绩', dataIndex: 'readScore', key: '5', width: 100, align: 'center' },
+  { title: '答辩成绩', dataIndex: 'defScore', key: '6', width: 100, align: 'center' },
+  { title: '总评成绩', dataIndex: 'finalScore', key: '7', width: 100, align: 'center' },
   {
-    title: 'Action',
+    title: '操作',
     key: 'operation',
     fixed: 'right',
-    width: 100
+    width: 60,
+    align: 'center'
   }
 ];
 
