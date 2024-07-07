@@ -39,7 +39,6 @@ const uploadMidReport = (info: any) => {
         v-model:file-list="midWork"
         list-type="picture"
         accept=".zip"
-        :before-upload="beforeUploadZip"
         @change="uploadMidWork"
         :data="{ stu_id: getUserInfo().user_id, filename: '中期成果' }"
         action="http://127.0.0.1:5174/api/upload">

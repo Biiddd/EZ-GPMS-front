@@ -15,8 +15,8 @@ export const beforeUploadPDF = (file: File) => {
 
 export const beforeUploadZip = (file: File) => {
   return new Promise((resolve, reject) => {
-    const isPDF = file.type === 'application/pdf';
-    if (!isPDF) {
+    const isZip = file.type === 'application/zip';
+    if (!isZip) {
       message.error('只能上传 Zip 格式的压缩包', 3).then(() => {
         return Upload.LIST_IGNORE;
       });
