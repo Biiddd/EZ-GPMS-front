@@ -31,7 +31,7 @@ const handleLogout = async () => {
          <template #overlay>
             <a-menu>
               <a-menu-item key="info">
-                <router-link to="/info">个人中心</router-link>
+                <router-link to="/info">个人信息</router-link>
               </a-menu-item>
               <a-menu-item key="logout" @click="handleLogout">
                 <router-link to="/logout">退出登录</router-link>

@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import {ref, onMounted, onUnmounted, computed} from 'vue';
 import { UserOutlined } from '@ant-design/icons-vue';
 import { Avatar, FormItem, Row, Col, Space } from 'ant-design-vue';
+import {getUserInfo} from "../../utils/auth";
+import http from "@/utils/http";
+import {thisFullUserInfo} from "@/utils/UserInfo";
 
 // 当头像加载失败时的处理函数
 const defaultAvatar = () => {
@@ -14,7 +17,13 @@ const currentTime = ref(new Date().toLocaleString());
 const updateTime = () => {
   currentTime.value = new Date().toLocaleString();
 };
+http.post('/getFullInfo', { user_id: getUserInfo().user_id }).then((res) => {
+  thisFullUserInfo.value = res.data;
+});
 
+const isRegionReady = computed(() =>
+  Object.values(thisFullUserInfo.value.region).some((value) => value !== '')
+);
 let timer;
 
 onMounted(() => {
@@ -41,7 +50,7 @@ onUnmounted(() => {
           </a-form-item>
         </a-col>
       </a-row>
-      <span style="margin-left: 20px; font-size: 24px; color: black;">xxx同学，您好！</span>
+      <span style="margin-left: 20px; font-size: 24px; color: black;">{{ thisFullUserInfo.name }}，您好！您的工号是：{{ getUserInfo().user_id }} </span>
     </div>
     <div class="content">
       <h1 style="font-size: 24px; font-weight: bold;">欢迎来到毕业设计管理系统</h1>
