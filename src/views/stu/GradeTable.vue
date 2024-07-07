@@ -32,7 +32,7 @@ const scoreData = ref<ScoreData>();
 
 onMounted(async () => {
   try {
-    const response = await http.post('/stu/getScore', { user_id: getUserInfo().user_id });
+    const response = await http.post('/stu/getScore', { stu_id: getUserInfo().user_id });
     scoreData.value = response.data;
 
     dataSource.value = [

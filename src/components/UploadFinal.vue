@@ -40,7 +40,7 @@ const uploadDraft = (info: any) => {
         @change="uploadDraft"
         :before-upload="beforeUploadPDF"
         :data="{ stu_id: getUserInfo().user_id, filename: '毕业论文终稿' }"
-        action="http://127.0.0.1:5174/api/uploadD">
+        action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="Draft.length < 1">
           <upload-outlined />
           选择终稿

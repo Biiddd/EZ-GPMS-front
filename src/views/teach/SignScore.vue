@@ -70,7 +70,7 @@ function setState() {
   }
 }
 
-http.post('/stu/getScore', { user_id: user_id }).then((res) => {
+http.post('/stu/getScore', { stu_id: stu_id }).then((res) => {
   thisScore.value = res.data;
   console.log('成绩：', thisScore.value);
   setState();
