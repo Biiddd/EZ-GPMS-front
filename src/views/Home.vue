@@ -103,6 +103,12 @@ const handleLogout = async () => {
                 用户基本信息
               </router-link>
             </a-menu-item>
+            <a-menu-item>
+              <router-link to="/addUser">
+                <FormOutlined />
+                添加用户
+              </router-link>
+            </a-menu-item>
 
             <a-menu-item key="12">
               <router-link to="/showStu">

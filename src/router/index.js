@@ -98,7 +98,7 @@ const routes = [
         component: () => import('@/views/admin/ShowGroupArrange.vue'),
         meta: {
           requiresAuth: true,
-          roles: ['组长']
+          roles: ['组长', '管理员']
         }
       },
       {
@@ -114,6 +114,15 @@ const routes = [
         path: '/showUser',
         name: 'showUser',
         component: () => import('@/views/admin/ShowUser.vue'),
+        meta: {
+          requiresAuth: true,
+          roles: ['管理员']
+        }
+      },
+      {
+        path: '/addUser',
+        name: 'addUser',
+        component: () => import('@/views/admin/AddUser.vue'),
         meta: {
           requiresAuth: true,
           roles: ['管理员']
