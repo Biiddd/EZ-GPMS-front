@@ -48,7 +48,6 @@ const uploadReport = (info: any) => {
     <a-form-item :wrapper-col="{ offset: 14, span: 24 }">
       <Download
         button_text="下载校外毕设申请表"
-        :stu_id="getUserInfo().user_id"
         file-name="校外毕设申请表"
         file-type="docx"></Download>
     </a-form-item>

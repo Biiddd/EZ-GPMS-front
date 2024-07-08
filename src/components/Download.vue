@@ -15,7 +15,14 @@ const handleDownload = async () => {
   try {
     console.log('用户ID:', props.userId);
     console.log('文件名:', props.fileName);
-    if (!props.userId) {
+    if(props.fileName === '评价手册') {
+      console.log('导出评价手册')
+      response = await http.get('/exportEva', {
+        params: {
+          stu_id: props.userId,
+        }
+      });
+    } else if (!props.userId) {
       response = await http.get('/stu/getFilePath', {
         params: {
           file: props.fileName
