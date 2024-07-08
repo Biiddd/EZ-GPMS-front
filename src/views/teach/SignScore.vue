@@ -5,13 +5,15 @@ import { thisScore } from '@/utils/ScoreData';
 import { message } from 'ant-design-vue';
 import { useRoute } from 'vue-router';
 import { getUserInfo } from '@/utils/auth';
-import UnauthorizedSign from '@/views/common/unauthorizedSign.vue';
+import unauthorizedSign from '@/views/common/UnauthorizedSign.vue';
+import Download from '@/components/Download.vue';
 
 const labelCol = { style: { width: '300px' } };
 const wrapperCol = { span: 14 };
 
 const route = useRoute();
-const stu_id = route.params.stu_id;
+const stu_id: string = route.params.stu_id.toString();
+
 const current = ref<number>();
 const showForm = ref<boolean>();
 const showEnd = ref<boolean>();
@@ -142,7 +144,7 @@ const onSubmit = async () => {
   if (validSubmit()) {
     try {
       thisScore.value.finalEva = tempFinalEva.value;
-      console.log(thisScore.value.defRecord)
+      console.log(thisScore.value.defRecord);
       const response = await http.put('/teacher/updateScore', {
         ...thisScore.value
       });
@@ -365,7 +367,7 @@ const onSubmit = async () => {
         </a-form-item>
       </div>
 
-<!--      答辩记录表-->
+      <!--      答辩记录表-->
       <div v-if="current === 5">
         <a-form-item label="答辩记录" :wrapper-col="{ offset: -6, span: 6 }">
           <a-textarea v-model:value="thisScore.defRecord" />
