@@ -109,6 +109,15 @@ const routes = [
           requiresAuth: true,
           roles: ['指导教师', '小组秘书兼评阅教师', '组长']
         }
+      },
+      {
+        path: '/showUser',
+        name: 'showUser',
+        component: () => import('@/views/admin/ShowUser.vue'),
+        meta: {
+          requiresAuth: true,
+          roles: ['管理员']
+        }
       }
     ]
   },
