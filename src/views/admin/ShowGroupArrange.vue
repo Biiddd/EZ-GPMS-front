@@ -1,63 +1,54 @@
-<template>
-  <a-table :columns="columns" :data-source="dataSource" :pagination="false"></a-table>
-</template>
-
-<script lang="ts">
+<script lang="ts" setup>
 import { ref, onMounted } from 'vue';
+import http from '@/utils/http';
 
 const columns = ref([
   {
     title: '组号',
     dataIndex: 'group_id',
+    align: 'center',
     key: 'group_id'
   },
   {
     title: '教师名单',
     dataIndex: 'teachers',
-    key: 'teachers'
+    key: 'teachers',
+    align: 'center'
   },
   {
     title: '学生名单',
     dataIndex: 'students',
-    key: 'students'
+    key: 'students',
+    align: 'center'
   }
 ]);
 
-const dataSource = ref([
-  {
-    key: '1',
-    group_id: '',
-    teachers: [],
-    students: []
-  },
-  {
-    key: '2',
-    group_id: '',
-    teachers: [],
-    students: []
-  },
-  {
-    key: '3',
-    group_id: '',
-    teachers: [],
-    students: []
-  }
-]);
+const dataSource = ref([]);
 
-export default {
-  setup() {
-    // Simulating onMounted behavior
-    onMounted(() => {
-      // Simulated async operation
-      // Normally you would fetch data from an API and populate dataSource
-    });
-
-    return {
-      columns,
-      dataSource
-    };
+onMounted(async () => {
+  try {
+    const response = await http.get('/admin/getGroup');
+    if (response.data.code === 200) {
+      dataSource.value = response.data.data.map((item: any) => ({
+        group_id: item.group_id,
+        teachers: item.teacher_list.split(',').join(' '),
+        students: item.stu_list.split(',').join(' ')
+      }));
+    } else {
+      console.error('获取分组数据失败:', response.data.msg);
+    }
+  } catch (error) {
+    console.error('获取分组数据失败:', error);
   }
-};
+});
 </script>
+
+<template>
+  <a-table :columns="columns" :data-source="dataSource" :pagination="false">
+    <template #students="{ record }">
+      {{ record.students }}
+    </template>
+  </a-table>
+</template>
 
 <style scoped></style>
