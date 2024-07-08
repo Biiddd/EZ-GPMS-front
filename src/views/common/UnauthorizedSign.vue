@@ -7,6 +7,7 @@ import { getUserInfo, isLoggedIn } from '@/utils/auth';
     <template #extra>
       <p>当前您的学工号为: {{ getUserInfo().user_id }}</p>
       <p>您的用户类型为: {{ getUserInfo().user_type }}</p>
+      <a-button type="primary" @click="() => { $router.push('/showStu') }">返回学生列表</a-button>
     </template>
   </a-result>
 </template>

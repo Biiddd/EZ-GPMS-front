@@ -436,7 +436,15 @@ const onSubmit = async () => {
   </div>
 
   <div v-if="showEnd" class="steps-content">
-    <a-result status="success" title="该学生评分工作已完成"></a-result>
+    <a-result status="success" title="该学生评分工作已完成">
+      <template #extra>
+        <Download
+          button_text="点击下载评价手册"
+          :user-id="stu_id"
+          file-name="评价手册"
+          file-type="docx"></Download>
+      </template>
+    </a-result>
   </div>
   <div v-if="showUnAuthorized" class="steps-content">
     <unauthorizedSign></unauthorizedSign>
