@@ -10,6 +10,7 @@ export interface FullUserInfo {
   class: string;
   major: string;
   title: string;
+  teacherType: string;
   teacherGroup: number | null;
   stuGroup: number | null;
   tel: string;
@@ -36,6 +37,7 @@ export const thisFullUserInfo = ref<FullUserInfo>({
   class: '',
   major: '',
   title: '',
+  teacherType: '',
   teacherGroup: null,
   stuGroup: null,
   tel: '',
