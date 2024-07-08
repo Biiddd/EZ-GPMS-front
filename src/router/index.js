@@ -95,7 +95,7 @@ const routes = [
       {
         path: '/groupArrange',
         name: 'groupArrange',
-        component: () => import('@/components/GroupArrange.vue'),
+        component: () => import('@/views/admin/ShowGroupArrange.vue'),
         meta: {
           requiresAuth: true,
           roles: ['组长']
