@@ -4,6 +4,8 @@ import http from '@/utils/http';
 import { thisScore } from '@/utils/ScoreData';
 import { message } from 'ant-design-vue';
 import { useRoute } from 'vue-router';
+import { getUserInfo } from '@/utils/auth';
+import UnauthorizedSign from '@/views/common/unauthorizedSign.vue';
 
 const labelCol = { style: { width: '300px' } };
 const wrapperCol = { span: 14 };
@@ -11,6 +13,9 @@ const wrapperCol = { span: 14 };
 const route = useRoute();
 const stu_id = route.params.stu_id;
 const current = ref<number>();
+const showForm = ref<boolean>();
+const showEnd = ref<boolean>();
+const showUnAuthorized = ref<boolean>();
 
 const steps = [
   {
@@ -36,44 +41,28 @@ const steps = [
   }
 ];
 
-function setState() {
-  if (thisScore.value.transScore === null) {
-    current.value = 0;
-  }
+const warningText = ref<string>();
 
-  if (thisScore.value.transScore !== null && thisScore.value.startScore === null) {
-    current.value = 1;
-  }
-
-  if (thisScore.value.startScore !== null && thisScore.value.midScore === null) {
-    current.value = 2;
-  }
-
-  if (thisScore.value.midScore !== null && thisScore.value.teachScore === null) {
-    current.value = 3;
-  }
-
-  if (thisScore.value.teachScore !== null && thisScore.value.readScore === null) {
-    current.value = 4;
-  }
-
-  if (thisScore.value.readScore !== null && thisScore.value.defScore === null) {
-    current.value = 5;
-  }
-
-  if (thisScore.value.defScore !== null && thisScore.value.finalEva === null) {
-    current.value = 6;
-  }
-
-  if (thisScore.value.defScore !== null && thisScore.value.finalEva !== null) {
-    current.value = 6;
-  }
-}
+const setDisable = ref<boolean>();
+http
+  .post('/teacher/getState', { teacher_type: getUserInfo().user_type, stu_id: stu_id })
+  .then((res) => {
+    console.log(getUserInfo().user_type);
+    current.value = res.data.data.teacherStateCode;
+    setDisable.value = res.data.data.disableForm;
+    showForm.value = res.data.data.showForm;
+    showEnd.value = res.data.data.showEnd;
+    showUnAuthorized.value = res.data.data.showUnAuthorized;
+    warningText.value = res.data.msg;
+    console.log('msg', res.data.msg);
+    console.log('unauth', res.data.data.showUnAuthorized);
+    console.log('disableform', res.data.data.disableForm);
+    console.log('statuscode', res.data.data.teacherStateCode);
+    console.log('statusdis', res.data.data.teacherState);
+  });
 
 http.post('/stu/getScore', { stu_id: stu_id }).then((res) => {
   thisScore.value = res.data;
-  console.log('成绩：', thisScore.value);
-  setState();
 });
 
 const items = steps.map((item) => ({ key: item.title, title: item.title }));
@@ -148,13 +137,15 @@ const onSubmit = async () => {
   if (validSubmit()) {
     try {
       thisScore.value.finalEva = tempFinalEva.value;
-      console.log('提交的成绩：', thisScore.value);
       const response = await http.put('/teacher/updateScore', {
         ...thisScore.value
       });
-      console.log('提交成绩成功：', response);
       isShowConfirmDialog.value = false;
       message.success('提交成绩成功');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      message.success('刷新成功');
     } catch (error) {
       console.error('提交成绩失败：', error);
     }
@@ -168,12 +159,16 @@ const onSubmit = async () => {
   <div>
     <a-steps :current="current" :items="items"></a-steps>
   </div>
-  <div class="steps-content" v-if="thisScore.finalEva === null">
+  <div class="steps-content" v-if="showForm">
     <a-form
+      :disabled="setDisable"
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
       layout="horizontal"
       style="max-width: 600px">
+      <a-form-item>
+        <span>{{ warningText }}</span>
+      </a-form-item>
       <div v-if="current === 0" class="form-container">
         <a-form-item label="翻译阅读理解成绩" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
@@ -427,8 +422,11 @@ const onSubmit = async () => {
     </a-form>
   </div>
 
-  <div v-if="thisScore.finalEva !== null && thisScore.finalEva !== ''" class="steps-content">
+  <div v-if="showEnd" class="steps-content">
     <a-result status="success" title="该学生评分工作已完成"></a-result>
+  </div>
+  <div v-if="showUnAuthorized" class="steps-content">
+    <unauthorizedSign></unauthorizedSign>
   </div>
 </template>
 
