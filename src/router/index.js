@@ -17,9 +17,9 @@ const routes = [
     name: 'login',
     component: Login
   },
-    {
-    path: '/logout', // 添加 logout 路径
-    redirect: '/login' // 重定向到登录页面
+  {
+    path: '/logout',
+    redirect: '/login'
   },
   {
     path: '/home',
