@@ -59,7 +59,7 @@ const uploadMidReport = (info: any) => {
         action="http://127.0.0.1:5174/api/upload">
         <a-button size="large" v-if="midReport.length < 1">
           <upload-outlined />
-          选择终稿
+          选择中期报告
         </a-button>
       </a-upload>
     </a-form-item>
