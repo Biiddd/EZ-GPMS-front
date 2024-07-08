@@ -42,6 +42,9 @@ export interface ScoreData {
   readScore: number | null;
   readEva: string | null;
 
+  // 答辩记录
+  defRecord: string | null;
+
   // 答辩小组
   defScore1: number | null;
   defScore2: number | null;
@@ -94,6 +97,9 @@ export const thisScore = ref<ScoreData>({
   readScore4: null,
   readScore: null,
   readEva: '',
+
+  // 答辩记录
+  defRecord: null,
 
   // 答辩小组
   defScore1: null,

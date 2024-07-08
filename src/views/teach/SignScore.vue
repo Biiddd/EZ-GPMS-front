@@ -28,10 +28,13 @@ const steps = [
     title: '中期成绩'
   },
   {
-    title: '导师评价成绩'
+    title: '指导教师成绩'
   },
   {
     title: '评阅成绩'
+  },
+  {
+    title: '答辩记录'
   },
   {
     title: '答辩成绩'
@@ -112,13 +115,15 @@ const validSubmit = () => {
         thisScore.value.readScore4 != null
       );
     case 5:
+      return thisScore.value.defRecord != null;
+    case 6:
       return (
         thisScore.value.defScore1 != null &&
         thisScore.value.defScore2 != null &&
         thisScore.value.defScore3 != null &&
         thisScore.value.defScore4 != null
       );
-    case 6:
+    case 7:
       return tempFinalEva.value != null;
     default:
       return false;
@@ -137,6 +142,7 @@ const onSubmit = async () => {
   if (validSubmit()) {
     try {
       thisScore.value.finalEva = tempFinalEva.value;
+      console.log(thisScore.value.defRecord)
       const response = await http.put('/teacher/updateScore', {
         ...thisScore.value
       });
@@ -359,8 +365,15 @@ const onSubmit = async () => {
         </a-form-item>
       </div>
 
-      <!--      答辩打分表单      -->
+<!--      答辩记录表-->
       <div v-if="current === 5">
+        <a-form-item label="答辩记录" :wrapper-col="{ offset: -6, span: 6 }">
+          <a-textarea v-model:value="thisScore.defRecord" />
+        </a-form-item>
+      </div>
+
+      <!--      答辩打分表单      -->
+      <div v-if="current === 6">
         <a-form-item label="毕设陈述情况" :wrapper-col="{ offset: -6, span: 6 }">
           <a-input-number
             placeholder="0~10"
@@ -404,7 +417,7 @@ const onSubmit = async () => {
       </div>
 
       <!--      最终评价表单      -->
-      <div v-if="current === 6">
+      <div v-if="current === 7">
         <a-form-item label="最终评价" :wrapper-col="{ offset: -6, span: 6 }">
           <a-textarea v-model:value="tempFinalEva" />
         </a-form-item>

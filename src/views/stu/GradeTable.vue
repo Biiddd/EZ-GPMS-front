@@ -66,12 +66,18 @@ onMounted(async () => {
       },
       {
         key: '6',
+        column1: '答辩记录',
+        score: null,
+        evaluation: formatEvaluation(scoreData.value.defRecord)
+      },
+      {
+        key: '7',
         column1: '答辩小组',
         score: formatScore(scoreData.value.defScore),
         evaluation: formatEvaluation(scoreData.value.defEva)
       },
       {
-        key: '7',
+        key: '8',
         column1: '委员会总评',
         score: formatScore(scoreData.value.finalScore),
         evaluation: formatEvaluation(scoreData.value.finalEva)
